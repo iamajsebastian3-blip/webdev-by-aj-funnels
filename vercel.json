@@ -1,5 +1,6 @@
 {
   "rewrites": [
-    { "source": "/", "destination": "/luxury-resort-landing.html" }
+    { "source": "/", "destination": "/luxury-resort-landing.html" },
+    { "source": "/consultation", "destination": "/consultation.html" }
   ]
 }
