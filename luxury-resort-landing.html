@@ -1,0 +1,2128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premium Resort Websites & Funnels | System Built by AJ</title>
+  <meta name="description" content="We design premium websites and high-converting funnels that turn casual browsers into booked, paying customers for resorts, hotels, and cafés.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    /* ==================== DESIGN TOKENS ==================== */
+    :root {
+      --color-bg: #080612;
+      --color-surface-1: rgba(14, 11, 26, 0.6);
+      --color-surface-2: rgba(22, 17, 40, 0.5);
+      --color-border: rgba(94, 23, 235, 0.15);
+      --color-border-hover: rgba(94, 23, 235, 0.3);
+      --color-glass: rgba(14, 11, 30, 0.45);
+      --color-glass-border: rgba(94, 23, 235, 0.12);
+      --color-text-primary: #f0ecf6;
+      --color-text-secondary: #a8a0c0;
+      --color-text-tertiary: #605880;
+      --color-purple: #5e17eb;
+      --color-purple-bright: #7c3aff;
+      --color-purple-dim: rgba(94, 23, 235, 0.12);
+      --color-yellow: #f5c518;
+      --color-yellow-hover: #ffd740;
+      --color-yellow-dim: rgba(245, 197, 24, 0.1);
+      --color-error-red: #ff4d4d;
+      --color-success-green: #00d26a;
+
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --text-xs: 0.75rem;
+      --text-sm: 0.875rem;
+      --text-base: 1rem;
+      --text-lg: 1.125rem;
+      --text-xl: 1.25rem;
+      --text-2xl: 1.5rem;
+      --text-3xl: 2rem;
+      --text-4xl: 2.5rem;
+      --text-5xl: 3.5rem;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      font-size: var(--text-base);
+      line-height: 1.6;
+      color: var(--color-text-primary);
+      background: var(--color-bg);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ==================== SKIP LINK ==================== */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 16px;
+      padding: 12px 24px;
+      background: var(--color-yellow);
+      color: #080612;
+      font-weight: 700;
+      border-radius: 0 0 8px 8px;
+      z-index: 999;
+      text-decoration: none;
+    }
+    .skip-link:focus { top: 0; }
+
+    /* ==================== ATMOSPHERE — PURPLE ORBS ==================== */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .orb-1 {
+      width: 600px; height: 600px;
+      top: -10%; left: -5%;
+      background: rgba(94, 23, 235, 0.15);
+    }
+    .orb-2 {
+      width: 500px; height: 500px;
+      top: 30%; right: -10%;
+      background: rgba(94, 23, 235, 0.08);
+    }
+    .orb-3 {
+      width: 700px; height: 400px;
+      bottom: 10%; left: 20%;
+      background: rgba(94, 23, 235, 0.06);
+    }
+
+    /* ==================== LAYOUT ==================== */
+    .wrapper { position: relative; z-index: 1; }
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 96px 0; }
+
+    /* ==================== GLASSMORPHISM ==================== */
+    .glass {
+      background: var(--color-glass);
+      border: 1px solid var(--color-glass-border);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 16px;
+    }
+
+    .glass-hover {
+      transition: border-color 300ms ease, transform 300ms ease, box-shadow 300ms ease;
+    }
+    .glass-hover:hover {
+      border-color: rgba(94, 23, 235, 0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(94, 23, 235, 0.12);
+    }
+
+    /* ==================== TYPOGRAPHY ==================== */
+    h1, h2, h3, h4 {
+      font-family: var(--font);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--color-text-primary);
+    }
+    h1 { font-size: clamp(2.2rem, 5vw, var(--text-5xl)); }
+    h2 { font-size: clamp(1.75rem, 3.5vw, var(--text-4xl)); }
+    h3 { font-size: var(--text-2xl); }
+    h4 { font-size: var(--text-xl); font-weight: 700; }
+
+    p { color: var(--color-text-secondary); line-height: 1.7; }
+
+    .text-purple { color: var(--color-purple-bright); }
+    .text-yellow { color: var(--color-yellow); }
+    .text-gradient {
+      background: linear-gradient(135deg, var(--color-yellow), #ffb300);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .label {
+      font-size: var(--text-xs);
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-purple-bright);
+    }
+
+    .divider {
+      width: 48px;
+      height: 3px;
+      background: var(--color-purple);
+      border-radius: 2px;
+      margin: 16px auto;
+    }
+
+    /* ==================== BUTTONS ==================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font);
+      font-weight: 700;
+      font-size: var(--text-sm);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+      line-height: 1;
+    }
+    .btn:focus-visible { outline: 2px solid var(--color-yellow); outline-offset: 3px; }
+
+    .btn-primary {
+      padding: 14px 32px;
+      background: var(--color-yellow);
+      color: #080612;
+    }
+    .btn-primary:hover {
+      background: var(--color-yellow-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(245, 197, 24, 0.3);
+    }
+    .btn-primary:active { transform: translateY(0) scale(0.98); }
+
+    .btn-secondary {
+      padding: 14px 32px;
+      background: transparent;
+      color: var(--color-text-primary);
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+    .btn-secondary:hover {
+      border-color: rgba(255,255,255,0.3);
+      background: rgba(255,255,255,0.05);
+      transform: translateY(-2px);
+    }
+
+    .btn-arrow::after { content: ' →'; transition: transform 200ms; }
+    .btn-arrow:hover::after { transform: translateX(4px); }
+
+    /* ==================== NAV ==================== */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 16px 0;
+      background: rgba(8, 6, 18, 0.8);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(94, 23, 235, 0.1);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo {
+      font-size: var(--text-sm);
+      font-weight: 800;
+      color: var(--color-text-primary);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .nav-logo span { color: var(--color-yellow); }
+    .nav-links { display: flex; align-items: center; gap: 32px; }
+    .nav-link {
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+      text-decoration: none;
+      transition: color 200ms;
+    }
+    .nav-link:hover { color: var(--color-text-primary); }
+    .nav-cta { padding: 10px 24px; font-size: var(--text-xs); }
+
+    /* ==================== HERO ==================== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 48px;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: var(--color-purple-dim);
+      border: 1px solid rgba(94, 23, 235, 0.2);
+      border-radius: 100px;
+      margin-bottom: 24px;
+    }
+    .hero-badge-dot {
+      width: 6px; height: 6px;
+      background: var(--color-yellow);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+    .hero-badge span { font-size: var(--text-xs); font-weight: 600; color: var(--color-text-secondary); }
+    .hero h1 { margin-bottom: 20px; }
+    .hero-sub { font-size: var(--text-lg); margin-bottom: 12px; max-width: 500px; }
+    .hero-value {
+      font-size: var(--text-base);
+      font-weight: 600;
+      color: var(--color-text-primary);
+      margin-bottom: 8px;
+    }
+    .hero-punch {
+      font-size: var(--text-sm);
+      color: var(--color-yellow);
+      font-weight: 700;
+      margin-bottom: 32px;
+    }
+    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+    .hero-socials {
+      display: flex; gap: 12px; margin-top: 24px;
+      list-style: none;
+    }
+    .hero-socials a {
+      width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--color-text-tertiary);
+      text-decoration: none;
+      font-size: var(--text-xs);
+      transition: border-color 200ms, color 200ms;
+    }
+    .hero-socials a:hover { border-color: var(--color-purple-bright); color: var(--color-purple-bright); }
+    .hero-socials a:focus-visible { outline: 2px solid var(--color-yellow); outline-offset: 2px; }
+
+    /* Hero Right — Stats Card (glassmorphism) */
+    .hero-card {
+      padding: 32px;
+      position: relative;
+    }
+    .hero-card-header {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 24px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(94, 23, 235, 0.1);
+    }
+    .hero-card-avatar {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--color-purple), var(--color-purple-bright));
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: var(--text-sm); color: white;
+    }
+    .hero-card-name { font-weight: 700; font-size: var(--text-sm); }
+    .hero-card-role { font-size: var(--text-xs); color: var(--color-text-tertiary); }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .stat-item { text-align: center; }
+    .stat-value {
+      font-size: var(--text-2xl);
+      font-weight: 800;
+      color: var(--color-text-primary);
+    }
+    .stat-label {
+      font-size: var(--text-xs);
+      color: var(--color-text-tertiary);
+      margin-top: 4px;
+    }
+    .stat-row {
+      display: flex; justify-content: space-between;
+      padding-top: 20px;
+      border-top: 1px solid rgba(94, 23, 235, 0.1);
+    }
+    .stat-row-item { text-align: center; }
+    .stat-row-value { font-size: var(--text-lg); font-weight: 800; }
+    .stat-row-label { font-size: 10px; color: var(--color-text-tertiary); text-transform: uppercase; letter-spacing: 0.08em; }
+
+    /* ==================== SOCIAL PROOF STRIP ==================== */
+    .proof-strip {
+      padding: 40px 0;
+      border-top: 1px solid rgba(94, 23, 235, 0.08);
+      border-bottom: 1px solid rgba(94, 23, 235, 0.08);
+      overflow: hidden;
+      position: relative;
+    }
+    .proof-strip-label {
+      text-align: center;
+      font-size: var(--text-xs);
+      color: var(--color-text-tertiary);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .proof-marquee {
+      display: flex;
+      gap: 48px;
+      animation: marquee 30s linear infinite;
+    }
+    .proof-logo {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 20px;
+      border-radius: 100px;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.02);
+      white-space: nowrap;
+    }
+    .proof-logo-icon {
+      width: 24px; height: 24px;
+      border-radius: 6px;
+      background: linear-gradient(135deg, rgba(94,23,235,0.3), rgba(94,23,235,0.1));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px;
+    }
+    .proof-logo-text {
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--color-text-secondary);
+    }
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ==================== PROBLEM SECTION ==================== */
+    .problem-section {
+      position: relative;
+      overflow: hidden;
+    }
+    .section-header { text-align: center; margin-bottom: 64px; }
+    .section-header p { max-width: 560px; margin: 12px auto 0; }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      max-width: 700px;
+      margin: 0 auto 48px;
+    }
+    .problem-item {
+      display: flex; align-items: flex-start; gap: 16px;
+      padding: 20px 24px;
+      border-radius: 12px;
+      background: rgba(255, 77, 77, 0.03);
+      border: 1px solid rgba(255, 77, 77, 0.08);
+      transition: border-color 200ms, background 200ms;
+    }
+    .problem-item:hover {
+      border-color: rgba(255, 77, 77, 0.15);
+      background: rgba(255, 77, 77, 0.05);
+    }
+    .problem-x {
+      flex-shrink: 0;
+      width: 20px; height: 20px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%;
+      background: rgba(255, 77, 77, 0.1);
+      color: var(--color-error-red);
+      font-size: 11px; font-weight: 800;
+    }
+    .problem-text { font-size: var(--text-sm); color: var(--color-text-secondary); line-height: 1.5; }
+
+    .reality-box {
+      max-width: 700px; margin: 0 auto;
+      padding: 32px;
+      border-left: 3px solid var(--color-purple);
+      background: var(--color-glass);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 0 12px 12px 0;
+    }
+    .reality-box p {
+      font-size: var(--text-lg);
+      font-weight: 500;
+      color: var(--color-text-primary);
+      line-height: 1.6;
+    }
+
+    /* ==================== RESORT IMAGE BREAK ==================== */
+    .image-break {
+      padding: 48px 0;
+      overflow: hidden;
+    }
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .image-card {
+      aspect-ratio: 4/3;
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      background: linear-gradient(135deg, rgba(94,23,235,0.15), rgba(94,23,235,0.05));
+      border: 1px solid var(--color-glass-border);
+    }
+    .image-card-placeholder {
+      width: 100%; height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: var(--color-text-tertiary);
+      font-size: var(--text-xs);
+      text-align: center;
+      padding: 16px;
+    }
+    .image-card-placeholder svg {
+      width: 32px; height: 32px;
+      opacity: 0.4;
+    }
+    .image-card img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .image-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(8,6,18,0.7) 0%, transparent 50%);
+      display: flex;
+      align-items: flex-end;
+      padding: 20px;
+    }
+    .image-card-overlay span {
+      font-size: var(--text-xs);
+      font-weight: 600;
+      color: var(--color-text-secondary);
+      letter-spacing: 0.04em;
+    }
+
+    /* ==================== SOLUTION SECTION ==================== */
+    .solution-section { position: relative; }
+    .solution-intro {
+      font-size: var(--text-xl);
+      font-weight: 700;
+      color: var(--color-text-primary);
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    .solution-intro-sub {
+      text-align: center;
+      max-width: 480px;
+      margin: 0 auto 64px;
+    }
+
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    .pillar {
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .pillar-number {
+      position: absolute;
+      top: 16px; right: 20px;
+      font-size: var(--text-xs);
+      font-weight: 700;
+      color: var(--color-purple-bright);
+      opacity: 0.5;
+      letter-spacing: 0.08em;
+    }
+    .pillar-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: var(--color-purple-dim);
+      border: 1px solid rgba(94, 23, 235, 0.15);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+      font-size: 18px;
+    }
+    .pillar h4 { margin-bottom: 8px; }
+    .pillar-tagline {
+      font-size: var(--text-sm);
+      color: var(--color-purple-bright);
+      font-weight: 600;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .pillar p { font-size: var(--text-sm); }
+    .pillar-list {
+      list-style: none;
+      margin-top: 12px;
+    }
+    .pillar-list li {
+      padding: 4px 0;
+      color: var(--color-text-secondary);
+      font-size: var(--text-sm);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .pillar-list li::before {
+      content: '';
+      flex-shrink: 0;
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--color-purple-bright);
+    }
+
+    /* ==================== TRANSFORMATION ==================== */
+    .transform-section {
+      border-top: 1px solid rgba(94, 23, 235, 0.08);
+      border-bottom: 1px solid rgba(94, 23, 235, 0.08);
+      overflow: hidden;
+    }
+    .transform-grid {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 32px;
+      align-items: center;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .transform-card {
+      padding: 40px 32px;
+      border-radius: 16px;
+      text-align: center;
+    }
+    .transform-before {
+      background: rgba(255, 77, 77, 0.03);
+      border: 1px solid rgba(255, 77, 77, 0.12);
+    }
+    .transform-after {
+      background: rgba(0, 210, 106, 0.03);
+      border: 1px solid rgba(0, 210, 106, 0.12);
+    }
+    .transform-label {
+      font-size: var(--text-xs);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      display: block;
+    }
+    .transform-before .transform-label { color: var(--color-error-red); }
+    .transform-after .transform-label { color: var(--color-success-green); }
+    .transform-quote {
+      font-size: var(--text-xl);
+      font-weight: 600;
+      color: var(--color-text-primary);
+      line-height: 1.4;
+      font-style: italic;
+    }
+    .transform-arrow {
+      font-size: var(--text-3xl);
+      color: var(--color-purple-bright);
+      font-weight: 300;
+    }
+
+    /* ==================== TESTIMONIALS ==================== */
+    .testimonials-section { position: relative; }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .testimonial-card {
+      padding: 28px;
+    }
+    .testimonial-stars {
+      display: flex;
+      gap: 2px;
+      margin-bottom: 16px;
+    }
+    .testimonial-star {
+      color: var(--color-yellow);
+      font-size: 14px;
+    }
+    .testimonial-text {
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+      line-height: 1.7;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+    .testimonial-author {
+      display: flex; align-items: center; gap: 12px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(94, 23, 235, 0.08);
+    }
+    .testimonial-avatar {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(94,23,235,0.4), rgba(94,23,235,0.15));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700; color: var(--color-purple-bright);
+    }
+    .testimonial-name { font-size: var(--text-sm); font-weight: 600; color: var(--color-text-primary); }
+    .testimonial-role { font-size: var(--text-xs); color: var(--color-text-tertiary); }
+
+    /* ==================== CTA SECTION ==================== */
+    .cta-section {
+      text-align: center;
+      position: relative;
+    }
+    .cta-box {
+      padding: 64px 48px;
+      max-width: 720px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, rgba(94, 23, 235, 0.12), rgba(94, 23, 235, 0.04));
+      border: 1px solid rgba(94, 23, 235, 0.2);
+      border-radius: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-box::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle at 50% 50%, rgba(94, 23, 235, 0.08) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .cta-box > * { position: relative; }
+    .power-line {
+      font-size: clamp(1.3rem, 2.5vw, var(--text-2xl));
+      font-weight: 700;
+      color: var(--color-text-primary);
+      line-height: 1.4;
+      max-width: 560px;
+      margin: 0 auto 32px;
+    }
+    .power-line em {
+      color: var(--color-yellow);
+      font-style: normal;
+    }
+    .cta-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .cta-trust { font-size: var(--text-xs); color: var(--color-text-tertiary); }
+
+    /* ==================== FAQ ==================== */
+    .faq-section {
+      border-top: 1px solid rgba(94, 23, 235, 0.08);
+    }
+    .faq-list {
+      max-width: 700px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .faq-item {
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .faq-question {
+      width: 100%;
+      padding: 20px 24px;
+      background: transparent;
+      border: none;
+      color: var(--color-text-primary);
+      font-family: var(--font);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      transition: background 200ms;
+    }
+    .faq-question:hover { background: rgba(94, 23, 235, 0.05); }
+    .faq-question:focus-visible { outline: 2px solid var(--color-yellow); outline-offset: -2px; }
+    .faq-chevron {
+      flex-shrink: 0;
+      font-size: var(--text-lg);
+      color: var(--color-text-tertiary);
+      transition: transform 300ms ease;
+    }
+    .faq-item.open .faq-chevron { transform: rotate(45deg); }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 400ms cubic-bezier(0.4, 0, 0.2, 1), padding 400ms;
+      padding: 0 24px;
+    }
+    .faq-item.open .faq-answer {
+      max-height: 300px;
+      padding: 0 24px 20px;
+    }
+    .faq-answer p {
+      font-size: var(--text-sm);
+      line-height: 1.7;
+    }
+
+    /* ==================== FOOTER ==================== */
+    .footer {
+      padding: 48px 0;
+      border-top: 1px solid rgba(94, 23, 235, 0.08);
+    }
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-logo {
+      font-size: var(--text-xs);
+      font-weight: 800;
+      color: var(--color-text-primary);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .footer-logo span { color: var(--color-yellow); }
+    .footer-copy { font-size: var(--text-xs); color: var(--color-text-tertiary); }
+
+    /* ==================== ANIMATIONS ==================== */
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .reveal {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 600ms cubic-bezier(0.4,0,0.2,1), transform 600ms cubic-bezier(0.4,0,0.2,1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .stagger-1 { transition-delay: 0ms; }
+    .stagger-2 { transition-delay: 80ms; }
+    .stagger-3 { transition-delay: 160ms; }
+    .stagger-4 { transition-delay: 240ms; }
+    .stagger-5 { transition-delay: 320ms; }
+
+    .hero-animate > * {
+      animation: fadeSlideUp 600ms cubic-bezier(0.4,0,0.2,1) both;
+    }
+    .hero-animate > *:nth-child(1) { animation-delay: 0ms; }
+    .hero-animate > *:nth-child(2) { animation-delay: 100ms; }
+    .hero-animate > *:nth-child(3) { animation-delay: 200ms; }
+    .hero-animate > *:nth-child(4) { animation-delay: 300ms; }
+    .hero-animate > *:nth-child(5) { animation-delay: 400ms; }
+    .hero-animate > *:nth-child(6) { animation-delay: 500ms; }
+    .hero-animate > *:nth-child(7) { animation-delay: 600ms; }
+    .hero-animate > *:nth-child(8) { animation-delay: 700ms; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+      .reveal { opacity: 1; transform: none; }
+      .proof-marquee { animation: none; }
+    }
+
+    /* ==================== RESPONSIVE ==================== */
+    @media (max-width: 1024px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+      .hero-card { max-width: 420px; }
+    }
+    @media (max-width: 768px) {
+      .section { padding: 64px 0; }
+      .hero { min-height: auto; padding: 64px 0; }
+      .hero-ctas { flex-direction: column; }
+      .hero-ctas .btn { width: 100%; justify-content: center; }
+      .pillars { grid-template-columns: 1fr; }
+      .image-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .transform-grid { grid-template-columns: 1fr; gap: 16px; }
+      .transform-arrow { transform: rotate(90deg); text-align: center; display: block; }
+      .cta-box { padding: 40px 24px; }
+      .cta-buttons { flex-direction: column; align-items: center; }
+      .cta-buttons .btn { width: 100%; max-width: 320px; justify-content: center; }
+      .nav-links { display: none; }
+      .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
+    }
+    @media (max-width: 480px) {
+      .container { padding: 0 16px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .pricing-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ==================== PRICING ==================== */
+    .pricing-section { position: relative; }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      align-items: stretch;
+    }
+    @media (max-width: 768px) {
+      .pricing-grid { grid-template-columns: 1fr; }
+    }
+    .pricing-card {
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+    .pricing-card.featured {
+      border-color: rgba(94, 23, 235, 0.35);
+    }
+    .pricing-card.featured::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--color-purple), var(--color-purple-bright));
+    }
+    .pricing-phase {
+      font-size: var(--text-xs);
+      color: var(--color-text-tertiary);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .pricing-name-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .pricing-name {
+      font-size: var(--text-sm);
+      font-weight: 800;
+      color: var(--color-text-primary);
+      padding: 4px 12px;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 6px;
+      display: inline-block;
+    }
+    .pricing-card.featured .pricing-name {
+      background: var(--color-yellow);
+      color: #080612;
+      border-color: var(--color-yellow);
+    }
+    .pricing-popular {
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--color-yellow);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .pricing-price {
+      font-size: var(--text-4xl);
+      font-weight: 900;
+      color: var(--color-text-primary);
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+      line-height: 1;
+    }
+    .pricing-card:last-child .pricing-price {
+      background: linear-gradient(135deg, var(--color-text-primary), var(--color-purple-bright));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .pricing-features {
+      list-style: none;
+      flex: 1;
+      margin-bottom: 28px;
+    }
+    .pricing-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 6px 0;
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+      line-height: 1.5;
+    }
+    .pricing-check {
+      flex-shrink: 0;
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      background: rgba(94, 23, 235, 0.15);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px;
+      color: var(--color-purple-bright);
+      margin-top: 2px;
+    }
+    .pricing-card.featured .pricing-check {
+      background: var(--color-yellow-dim);
+      color: var(--color-yellow);
+    }
+    .btn-pricing {
+      width: 100%;
+      justify-content: center;
+      padding: 14px 24px;
+      border-radius: 100px;
+      font-size: var(--text-sm);
+    }
+    .btn-pricing-default {
+      background: rgba(255,255,255,0.06);
+      color: var(--color-text-primary);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .btn-pricing-default:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.2);
+    }
+    .btn-pricing-featured {
+      background: var(--color-yellow);
+      color: #080612;
+      border: none;
+    }
+    .btn-pricing-featured:hover {
+      background: var(--color-yellow-hover);
+      box-shadow: 0 4px 20px rgba(245, 197, 24, 0.3);
+    }
+    .btn-pricing-premium {
+      background: var(--color-purple);
+      color: white;
+      border: none;
+    }
+    .btn-pricing-premium:hover {
+      background: var(--color-purple-bright);
+      box-shadow: 0 4px 20px rgba(94, 23, 235, 0.3);
+    }
+
+    /* FAQ answer lists */
+    .faq-answer ul {
+      list-style: none;
+      margin: 8px 0;
+    }
+    .faq-answer ul li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 3px 0;
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+      line-height: 1.5;
+    }
+    .faq-answer ul li::before {
+      content: '✓';
+      flex-shrink: 0;
+      color: var(--color-purple-bright);
+      font-weight: 700;
+      font-size: 12px;
+      margin-top: 2px;
+    }
+    .faq-answer .faq-emphasis {
+      color: var(--color-text-primary);
+      font-weight: 600;
+      font-style: italic;
+      display: block;
+      margin-top: 8px;
+    }
+
+    /* ==================== PORTFOLIO SHOWCASE ==================== */
+    .showcase-section { position: relative; overflow: hidden; }
+    .showcase-label {
+      text-align: center;
+      font-size: var(--text-xs);
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-text-tertiary);
+      margin-bottom: 32px;
+    }
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    .showcase-card {
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      background: var(--color-glass);
+      border: 1px solid var(--color-glass-border);
+      transition: border-color 300ms, transform 300ms, box-shadow 300ms;
+    }
+    .showcase-card:hover {
+      border-color: rgba(94, 23, 235, 0.25);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(94, 23, 235, 0.1);
+    }
+    .showcase-card.featured-showcase {
+      grid-column: span 2;
+    }
+    .showcase-preview {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: linear-gradient(145deg, rgba(94,23,235,0.08), rgba(94,23,235,0.02));
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .showcase-preview-inner {
+      width: 85%;
+      height: 80%;
+      border-radius: 8px;
+      background: rgba(8, 6, 18, 0.8);
+      border: 1px solid rgba(94, 23, 235, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+    .showcase-browser-dots {
+      display: flex;
+      gap: 6px;
+      padding: 10px 14px;
+      border-bottom: 1px solid rgba(94, 23, 235, 0.08);
+    }
+    .showcase-browser-dots span {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+    }
+    .showcase-browser-dots span:first-child { background: rgba(255, 77, 77, 0.4); }
+    .showcase-browser-dots span:nth-child(2) { background: rgba(245, 197, 24, 0.4); }
+    .showcase-browser-dots span:nth-child(3) { background: rgba(0, 210, 106, 0.4); }
+    .showcase-browser-body {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .showcase-browser-bar {
+      height: 6px;
+      border-radius: 3px;
+      background: rgba(94, 23, 235, 0.12);
+    }
+    .showcase-browser-bar.w60 { width: 60%; }
+    .showcase-browser-bar.w80 { width: 80%; }
+    .showcase-browser-bar.w40 { width: 40%; }
+    .showcase-browser-bar.w70 { width: 70%; }
+    .showcase-browser-bar.accent { background: rgba(245, 197, 24, 0.2); width: 30%; height: 8px; border-radius: 4px; }
+    .showcase-browser-blocks {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .showcase-browser-block {
+      height: 28px;
+      border-radius: 4px;
+      background: rgba(94, 23, 235, 0.06);
+      border: 1px solid rgba(94, 23, 235, 0.06);
+    }
+    .showcase-meta {
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .showcase-meta-left {}
+    .showcase-meta-title {
+      font-size: var(--text-sm);
+      font-weight: 700;
+      color: var(--color-text-primary);
+      margin-bottom: 2px;
+    }
+    .showcase-meta-type {
+      font-size: var(--text-xs);
+      color: var(--color-text-tertiary);
+    }
+    .showcase-meta-tag {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 100px;
+      background: var(--color-purple-dim);
+      color: var(--color-purple-bright);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    @media (max-width: 768px) {
+      .showcase-grid { grid-template-columns: 1fr; }
+      .showcase-card.featured-showcase { grid-column: span 1; }
+    }
+
+    /* ==================== TRANSFORMATION REDESIGN ==================== */
+    .transform-visual {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .transform-timeline {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      position: relative;
+    }
+    .transform-side {
+      flex: 1;
+      padding: 40px 32px;
+      position: relative;
+    }
+    .transform-side-before {
+      background: linear-gradient(135deg, rgba(255, 77, 77, 0.06), rgba(255, 77, 77, 0.01));
+      border: 1px solid rgba(255, 77, 77, 0.1);
+      border-radius: 20px 0 0 20px;
+      border-right: none;
+    }
+    .transform-side-after {
+      background: linear-gradient(135deg, rgba(0, 210, 106, 0.02), rgba(94, 23, 235, 0.06));
+      border: 1px solid rgba(0, 210, 106, 0.1);
+      border-radius: 0 20px 20px 0;
+      border-left: none;
+    }
+    .transform-center {
+      width: 64px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+    }
+    .transform-center-line {
+      width: 2px;
+      flex: 1;
+      background: linear-gradient(to bottom, rgba(255, 77, 77, 0.3), var(--color-purple), rgba(0, 210, 106, 0.3));
+    }
+    .transform-center-icon {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: var(--color-purple);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--text-lg);
+      color: white;
+      box-shadow: 0 0 24px rgba(94, 23, 235, 0.4);
+      margin: 8px 0;
+    }
+    .transform-side-label {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .transform-side-before .transform-side-label { color: var(--color-error-red); }
+    .transform-side-after .transform-side-label { color: var(--color-success-green); }
+    .transform-side-quote {
+      font-size: var(--text-lg);
+      font-weight: 600;
+      color: var(--color-text-primary);
+      line-height: 1.5;
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+    .transform-side-list {
+      list-style: none;
+    }
+    .transform-side-list li {
+      padding: 4px 0;
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .transform-side-before .transform-side-list li::before {
+      content: '✕';
+      font-size: 10px;
+      color: rgba(255, 77, 77, 0.6);
+      font-weight: 800;
+    }
+    .transform-side-after .transform-side-list li::before {
+      content: '✓';
+      font-size: 11px;
+      color: var(--color-success-green);
+      font-weight: 800;
+    }
+    @media (max-width: 768px) {
+      .transform-timeline { flex-direction: column; }
+      .transform-side-before { border-radius: 20px 20px 0 0; border-right: 1px solid rgba(255,77,77,0.1); border-bottom: none; }
+      .transform-side-after { border-radius: 0 0 20px 20px; border-left: 1px solid rgba(0,210,106,0.1); border-top: none; }
+      .transform-center { flex-direction: row; width: 100%; height: 48px; }
+      .transform-center-line { height: 2px; width: 100%; flex: 1; background: linear-gradient(to right, rgba(255,77,77,0.3), var(--color-purple), rgba(0,210,106,0.3)); }
+    }
+
+    /* ==================== CLOSING SECTION ==================== */
+    .closing-section {
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .closing-section::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px; height: 600px;
+      background: radial-gradient(ellipse, rgba(94, 23, 235, 0.1) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .closing-headline {
+      font-size: clamp(2rem, 4vw, var(--text-5xl));
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    .closing-sub {
+      font-size: var(--text-lg);
+      max-width: 500px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+    .closing-cta-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+    .btn-closing {
+      padding: 18px 48px;
+      font-size: var(--text-base);
+      border-radius: 100px;
+      background: linear-gradient(135deg, var(--color-purple), var(--color-purple-bright));
+      color: white;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      box-shadow: 0 4px 32px rgba(94, 23, 235, 0.3);
+    }
+    .btn-closing:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 40px rgba(94, 23, 235, 0.4);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Atmosphere -->
+  <div class="orb orb-1" aria-hidden="true"></div>
+  <div class="orb orb-2" aria-hidden="true"></div>
+  <div class="orb orb-3" aria-hidden="true"></div>
+
+  <!-- Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="wrapper">
+
+    <main id="main-content">
+
+      <!-- ============ HERO ============ -->
+      <header class="hero section" role="banner">
+        <div class="container">
+          <div class="hero-grid">
+
+            <!-- Left -->
+            <div class="hero-animate">
+              <div class="hero-badge">
+                <div class="hero-badge-dot" aria-hidden="true"></div>
+                <span>Available for local &amp; international clients</span>
+              </div>
+
+              <h1>Your Business Looks Premium. <span class="text-yellow">But Your Online Presence Doesn't.</span></h1>
+
+              <p class="hero-sub">
+                You've invested heavily into your resort, restaurant, or clinic&hellip;
+                but if your website doesn't reflect that — you're silently losing high-paying customers every day.
+              </p>
+
+              <p class="hero-value">
+                We design premium websites + high-converting funnels
+                that turn casual browsers into booked, paying customers.
+              </p>
+
+              <p class="hero-punch">
+                Because in today's market — people don't visit first… they Google first.
+              </p>
+
+              <div class="hero-ctas">
+                <a href="https://workwithaj.ajautomate.co/" class="btn btn-primary btn-arrow">Check Our Premium Websites</a>
+              </div>
+
+              <ul class="hero-socials" aria-label="Social links">
+                <li><a href="#" aria-label="TikTok">tk</a></li>
+                <li><a href="#" aria-label="Facebook">f</a></li>
+                <li><a href="#" aria-label="Instagram">ig</a></li>
+              </ul>
+            </div>
+
+            <!-- Right — Stats Card -->
+            <div class="hero-card glass" style="animation: fadeSlideUp 600ms cubic-bezier(0.4,0,0.2,1) 400ms both;">
+              <div class="hero-card-header">
+                <div class="hero-card-avatar">AJ</div>
+                <div>
+                  <div class="hero-card-name">Allen Bactad</div>
+                  <div class="hero-card-role">Web Developer &amp; Funnel Strategist</div>
+                </div>
+              </div>
+
+              <div class="stats-grid">
+                <div class="stat-item">
+                  <div class="stat-value text-yellow">96%</div>
+                  <div class="stat-label">Client Satisfaction</div>
+                </div>
+                <div class="stat-item">
+                  <div class="stat-value text-yellow">2.8×</div>
+                  <div class="stat-label">Avg. Conversion Lift</div>
+                </div>
+                <div class="stat-item">
+                  <div class="stat-value text-yellow">100%</div>
+                  <div class="stat-label">Custom-Built</div>
+                </div>
+              </div>
+
+              <div class="stat-row">
+                <div class="stat-row-item">
+                  <div class="stat-row-value">5+</div>
+                  <div class="stat-row-label">Years Building</div>
+                </div>
+                <div class="stat-row-item">
+                  <div class="stat-row-value">50+</div>
+                  <div class="stat-row-label">Sites &amp; Funnels</div>
+                </div>
+                <div class="stat-row-item">
+                  <div class="stat-row-value">OK.</div>
+                  <div class="stat-row-label">Let's Build</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- ============ SOCIAL PROOF MARQUEE ============ -->
+      <div class="proof-strip" aria-label="Trusted tools and platforms">
+        <div class="proof-strip-label">Trusted Tools &amp; Platforms</div>
+        <div class="container" style="overflow: hidden;">
+          <div class="proof-marquee" aria-hidden="true">
+            <div class="proof-logo"><div class="proof-logo-icon">🏨</div><span class="proof-logo-text">HighLevel</span></div>
+            <div class="proof-logo"><div class="proof-logo-icon">🔗</div><span class="proof-logo-text">Zapier</span></div>
+            <div class="proof-logo"><div class="proof-logo-icon">📧</div><span class="proof-logo-text">Mailchimp</span></div>
+            <div class="proof-logo"><div class="proof-logo-icon">📊</div><span class="proof-logo-text">Google Ads</span></div>
+            <div class="proof-logo"><div class="proof-logo-icon">📱</div><span class="proof-logo-text">Meta Ads</span></div>
+            <div class="proof-logo"><div class="proof-logo-icon">🎨</div><span class="proof-logo-text">Canva</span></div>
+            <div class="proof-logo"><div class="proof-logo-icon">💬</div><span class="proof-logo-text">ChatGPT</span></div>
+            <div class="proof-logo"><div class="proof-logo-icon">▲</div><span class="proof-logo-text">Vercel</span></div>
+            <div class="proof-logo"><div class="proof-logo-icon">⚡</div><span class="proof-logo-text">Supabase</span></div>
+            <div class="proof-logo"><div class="proof-logo-icon">🔄</div><span class="proof-logo-text">Make.com</span></div>
+            <!-- Duplicate for seamless loop -->
+            <div class="proof-logo"><div class="proof-logo-icon">🏨</div><span class="proof-logo-text">HighLevel</span></div>
+            <div class="proof-logo"><div class="proof-logo-icon">🔗</div><span class="proof-logo-text">Zapier</span></div>
+            <div class="proof-logo"><div class="proof-logo-icon">📧</div><span class="proof-logo-text">Mailchimp</span></div>
+            <div class="proof-logo"><div class="proof-logo-icon">📊</div><span class="proof-logo-text">Google Ads</span></div>
+            <div class="proof-logo"><div class="proof-logo-icon">📱</div><span class="proof-logo-text">Meta Ads</span></div>
+            <div class="proof-logo"><div class="proof-logo-icon">🎨</div><span class="proof-logo-text">Canva</span></div>
+            <div class="proof-logo"><div class="proof-logo-icon">💬</div><span class="proof-logo-text">ChatGPT</span></div>
+            <div class="proof-logo"><div class="proof-logo-icon">▲</div><span class="proof-logo-text">Vercel</span></div>
+            <div class="proof-logo"><div class="proof-logo-icon">⚡</div><span class="proof-logo-text">Supabase</span></div>
+            <div class="proof-logo"><div class="proof-logo-icon">🔄</div><span class="proof-logo-text">Make.com</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ PROBLEM ============ -->
+      <section class="problem-section section" aria-labelledby="problem-heading">
+        <div class="container">
+          <div class="section-header reveal">
+            <span class="label">The Problem</span>
+            <div class="divider"></div>
+            <h2 id="problem-heading">Most Resorts, Restaurants &amp; Clinics<br>Are Stuck Here.</h2>
+            <p>Premium businesses. Invisible online. Bleeding revenue they never see.</p>
+          </div>
+
+          <div class="problem-grid">
+            <div class="problem-item reveal stagger-1">
+              <span class="problem-x" aria-hidden="true">✕</span>
+              <p class="problem-text">Your website looks outdated or generic — first impressions are made in 0.05 seconds</p>
+            </div>
+            <div class="problem-item reveal stagger-2">
+              <span class="problem-x" aria-hidden="true">✕</span>
+              <p class="problem-text">No clear booking journey — customers get confused, lose interest, and leave</p>
+            </div>
+            <div class="problem-item reveal stagger-3">
+              <span class="problem-x" aria-hidden="true">✕</span>
+              <p class="problem-text">You rely too much on walk-ins or referrals to fill rooms and tables</p>
+            </div>
+            <div class="problem-item reveal stagger-4">
+              <span class="problem-x" aria-hidden="true">✕</span>
+              <p class="problem-text">Competitors with better branding are stealing your customers online</p>
+            </div>
+            <div class="problem-item reveal stagger-5">
+              <span class="problem-x" aria-hidden="true">✕</span>
+              <p class="problem-text">You're invisible on Google, social media, and paid ads</p>
+            </div>
+          </div>
+
+          <div class="reality-box reveal">
+            <p>Even if your place is beautiful… if your online presence isn't — people assume you're not worth it.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ IMAGE BREAK ============ -->
+      <div class="image-break">
+        <div class="container">
+          <div class="image-grid reveal">
+            <div class="image-card">
+              <div class="image-card-placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                <span>Resort / Hotel<br><em style="opacity:0.5">Replace with your photo</em></span>
+              </div>
+            </div>
+            <div class="image-card">
+              <div class="image-card-placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                <span>Restaurant / Caf&eacute;<br><em style="opacity:0.5">Replace with your photo</em></span>
+              </div>
+            </div>
+            <div class="image-card">
+              <div class="image-card-placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                <span>Dental / Skin Clinic<br><em style="opacity:0.5">Replace with your photo</em></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ SOLUTION ============ -->
+      <section id="solution" class="solution-section section" aria-labelledby="solution-heading">
+        <div class="container">
+          <div class="section-header reveal">
+            <span class="label">The Solution</span>
+            <div class="divider"></div>
+            <h2 id="solution-heading">We Don't Just "Make Websites."</h2>
+          </div>
+
+          <p class="solution-intro reveal">We Build Revenue-Driven Digital Experiences.</p>
+          <p class="solution-intro-sub reveal">Clear, premium, outcome-focused systems that turn your online presence into a booking machine.</p>
+
+          <div class="pillars">
+            <div class="pillar glass glass-hover reveal stagger-1">
+              <span class="pillar-number">MOD_01</span>
+              <div class="pillar-icon">🏛️</div>
+              <h4>Luxury Website Design</h4>
+              <span class="pillar-tagline">"This place is worth booking."</span>
+              <p>A sleek, modern website that instantly communicates premium quality. Your digital storefront should feel as good as walking through your front door.</p>
+            </div>
+
+            <div class="pillar glass glass-hover reveal stagger-2">
+              <span class="pillar-number">MOD_02</span>
+              <div class="pillar-icon">🔄</div>
+              <h4>High-Converting Funnels</h4>
+              <span class="pillar-tagline">View → Trust → Desire → Book</span>
+              <p>We guide visitors step-by-step through a proven journey. No confusion. No drop-offs. Just a seamless path from discovery to "Book Now."</p>
+            </div>
+
+            <div class="pillar glass glass-hover reveal stagger-3">
+              <span class="pillar-number">MOD_03</span>
+              <div class="pillar-icon">📈</div>
+              <h4>Booking Optimization</h4>
+              <span class="pillar-tagline">More clicks on "Book Now"</span>
+              <p>We structure your pages so guests:</p>
+              <ul class="pillar-list">
+                <li>Stay longer on every page</li>
+                <li>Feel the experience before arriving</li>
+                <li>Actually click "Book Now"</li>
+              </ul>
+            </div>
+
+            <div class="pillar glass glass-hover reveal stagger-4">
+              <span class="pillar-number">MOD_04</span>
+              <div class="pillar-icon">💎</div>
+              <h4>Premium Positioning</h4>
+              <span class="pillar-tagline">Charge what you're worth</span>
+              <p>Position your brand so you can:</p>
+              <ul class="pillar-list">
+                <li>Charge higher rates with confidence</li>
+                <li>Attract better, higher-spending customers</li>
+                <li>Stand out in a crowded market</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ PORTFOLIO SHOWCASE 1 ============ -->
+      <section class="showcase-section section" aria-label="Portfolio showcase">
+        <div class="container">
+          <div class="section-header reveal">
+            <span class="label">Our Work</span>
+            <div class="divider"></div>
+            <h2>Websites That Actually Convert</h2>
+            <p>Real projects. Real results. Built to turn visitors into paying customers.</p>
+          </div>
+
+          <div class="showcase-grid reveal">
+            <div class="showcase-card featured-showcase glass-hover">
+              <div class="showcase-preview">
+                <div class="showcase-preview-inner">
+                  <div class="showcase-browser-dots"><span></span><span></span><span></span></div>
+                  <div class="showcase-browser-body">
+                    <div class="showcase-browser-bar w60"></div>
+                    <div class="showcase-browser-bar w80"></div>
+                    <div class="showcase-browser-bar accent"></div>
+                    <div class="showcase-browser-blocks">
+                      <div class="showcase-browser-block"></div>
+                      <div class="showcase-browser-block"></div>
+                      <div class="showcase-browser-block"></div>
+                      <div class="showcase-browser-block"></div>
+                    </div>
+                    <div class="showcase-browser-bar w70"></div>
+                    <div class="showcase-browser-bar w40"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="showcase-meta">
+                <div class="showcase-meta-left">
+                  <div class="showcase-meta-title">Luxury Beach Resort — Batangas</div>
+                  <div class="showcase-meta-type">Full Website + Booking Funnel</div>
+                </div>
+                <span class="showcase-meta-tag">Resort</span>
+              </div>
+            </div>
+
+            <div class="showcase-card glass-hover">
+              <div class="showcase-preview">
+                <div class="showcase-preview-inner">
+                  <div class="showcase-browser-dots"><span></span><span></span><span></span></div>
+                  <div class="showcase-browser-body">
+                    <div class="showcase-browser-bar w80"></div>
+                    <div class="showcase-browser-bar w40"></div>
+                    <div class="showcase-browser-bar accent"></div>
+                    <div class="showcase-browser-blocks">
+                      <div class="showcase-browser-block"></div>
+                      <div class="showcase-browser-block"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="showcase-meta">
+                <div class="showcase-meta-left">
+                  <div class="showcase-meta-title">Premium Dental Clinic</div>
+                  <div class="showcase-meta-type">Website + Lead Gen Funnel</div>
+                </div>
+                <span class="showcase-meta-tag">Clinic</span>
+              </div>
+            </div>
+
+            <div class="showcase-card glass-hover">
+              <div class="showcase-preview">
+                <div class="showcase-preview-inner">
+                  <div class="showcase-browser-dots"><span></span><span></span><span></span></div>
+                  <div class="showcase-browser-body">
+                    <div class="showcase-browser-bar w70"></div>
+                    <div class="showcase-browser-bar w60"></div>
+                    <div class="showcase-browser-bar accent"></div>
+                    <div class="showcase-browser-blocks">
+                      <div class="showcase-browser-block"></div>
+                      <div class="showcase-browser-block"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="showcase-meta">
+                <div class="showcase-meta-left">
+                  <div class="showcase-meta-title">Rooftop Restaurant — BGC</div>
+                  <div class="showcase-meta-type">Website + Reservation System</div>
+                </div>
+                <span class="showcase-meta-tag">Restaurant</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ TRANSFORMATION REDESIGN ============ -->
+      <section class="transform-section section" aria-labelledby="transform-heading">
+        <div class="container">
+          <div class="section-header reveal">
+            <span class="label">The Transformation</span>
+            <div class="divider"></div>
+            <h2 id="transform-heading">From Overlooked to Overbooked</h2>
+          </div>
+
+          <div class="transform-visual reveal">
+            <div class="transform-timeline">
+              <div class="transform-side transform-side-before">
+                <div class="transform-side-label">Before — Without a System</div>
+                <p class="transform-side-quote">"Nice place… but I'll check other options."</p>
+                <ul class="transform-side-list">
+                  <li>Generic or outdated website</li>
+                  <li>No clear path to booking</li>
+                  <li>Losing customers to competitors</li>
+                  <li>Relying on walk-ins &amp; referrals</li>
+                  <li>Invisible on Google &amp; social</li>
+                </ul>
+              </div>
+              <div class="transform-center" aria-hidden="true">
+                <div class="transform-center-line"></div>
+                <div class="transform-center-icon">→</div>
+                <div class="transform-center-line"></div>
+              </div>
+              <div class="transform-side transform-side-after">
+                <div class="transform-side-label">After — With WebDev by AJ</div>
+                <p class="transform-side-quote">"This is EXACTLY what I'm looking for. Let's book now."</p>
+                <ul class="transform-side-list">
+                  <li>Premium, conversion-focused site</li>
+                  <li>Clear booking journey</li>
+                  <li>Standing out in your market</li>
+                  <li>24/7 online customer acquisition</li>
+                  <li>Ranking on Google &amp; converting on ads</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ TESTIMONIALS ============ -->
+      <section id="testimonials" class="testimonials-section section" aria-labelledby="testimonials-heading">
+        <div class="container">
+          <div class="section-header reveal">
+            <span class="label">Client Feedback</span>
+            <div class="divider"></div>
+            <h2 id="testimonials-heading">What Clients Say</h2>
+          </div>
+
+          <div class="testimonials-grid">
+            <div class="testimonial-card glass reveal stagger-1">
+              <div class="testimonial-stars" aria-label="5 out of 5 stars">
+                <span class="testimonial-star">★</span>
+                <span class="testimonial-star">★</span>
+                <span class="testimonial-star">★</span>
+                <span class="testimonial-star">★</span>
+                <span class="testimonial-star">★</span>
+              </div>
+              <p class="testimonial-text">"Our online reservations went up 340% the first month after AJ rebuilt our website and funnel. We had to hire more staff. That everything."</p>
+              <div class="testimonial-author">
+                <div class="testimonial-avatar">PM</div>
+                <div>
+                  <div class="testimonial-name">Patricia Mendoza</div>
+                  <div class="testimonial-role">Resort Owner, Batangas</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial-card glass reveal stagger-2">
+              <div class="testimonial-stars" aria-label="5 out of 5 stars">
+                <span class="testimonial-star">★</span>
+                <span class="testimonial-star">★</span>
+                <span class="testimonial-star">★</span>
+                <span class="testimonial-star">★</span>
+                <span class="testimonial-star">★</span>
+              </div>
+              <p class="testimonial-text">"They really got the business workflow. What we got wasn't just a pretty website — they mapped the pipeline, automated trigger tags, and reduced friction everywhere."</p>
+              <div class="testimonial-author">
+                <div class="testimonial-avatar">RC</div>
+                <div>
+                  <div class="testimonial-name">Marco De Guzman</div>
+                  <div class="testimonial-role">Boutique Hotel, Palawan</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial-card glass reveal stagger-3">
+              <div class="testimonial-stars" aria-label="5 out of 5 stars">
+                <span class="testimonial-star">★</span>
+                <span class="testimonial-star">★</span>
+                <span class="testimonial-star">★</span>
+                <span class="testimonial-star">★</span>
+                <span class="testimonial-star">★</span>
+              </div>
+              <p class="testimonial-text">"I knew our place was beautiful, but online it didn't show. Since the rebrand and new funnel, we've been fully booked three weekends straight. New league entirely."</p>
+              <div class="testimonial-author">
+                <div class="testimonial-avatar">AS</div>
+                <div>
+                  <div class="testimonial-name">Angela Santos</div>
+                  <div class="testimonial-role">Café Owner, Tagaytay</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ CTA BOX ============ -->
+      <section id="cta" class="cta-section section" aria-labelledby="cta-heading">
+        <div class="container">
+          <div class="cta-box reveal">
+            <span class="label">Ready to upgrade?</span>
+            <div class="divider" style="margin: 12px auto 24px;"></div>
+
+            <p class="power-line">
+              Your business deserves a website that works as hard as you do.
+              Not a template. <em>A system built to convert.</em>
+            </p>
+
+            <h2 id="cta-heading" style="font-size: clamp(1.5rem, 2.5vw, var(--text-3xl)); margin-bottom: 32px; line-height: 1.2;">
+              Stop Losing Customers to<br>
+              a <span class="text-yellow">Broken Website.</span>
+            </h2>
+
+            <div class="cta-buttons">
+              <a href="https://workwithaj.ajautomate.co/" class="btn btn-primary btn-arrow">Check Our Premium Websites</a>
+            </div>
+
+            <p class="cta-trust">See real results · No templates · Built to convert</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ PRICING ============ -->
+      <section id="pricing" class="pricing-section section" aria-labelledby="pricing-heading">
+        <div class="container">
+          <div class="section-header reveal">
+            <span class="label">Investment</span>
+            <div class="divider"></div>
+            <h2 id="pricing-heading">Choose Your Build</h2>
+            <p>Every package is custom-built to convert. No templates. No shortcuts.</p>
+          </div>
+
+          <div class="pricing-grid">
+            <!-- STARTER -->
+            <div class="pricing-card glass glass-hover reveal stagger-1">
+              <div class="pricing-phase">Phase One</div>
+              <div class="pricing-name-row">
+                <span class="pricing-name">STARTER</span>
+              </div>
+              <div class="pricing-price">$297</div>
+              <ul class="pricing-features">
+                <li><span class="pricing-check">✓</span>1-page funnel build</li>
+                <li><span class="pricing-check">✓</span>Mobile-optimized design</li>
+                <li><span class="pricing-check">✓</span>Contact / booking form integration</li>
+                <li><span class="pricing-check">✓</span>Conversion-focused copywriting</li>
+                <li><span class="pricing-check">✓</span>Basic SEO setup</li>
+                <li><span class="pricing-check">✓</span>1 round of revisions</li>
+              </ul>
+              <a href="https://workwithaj.ajautomate.co/#booking" class="btn btn-pricing btn-pricing-default">Get Started</a>
+            </div>
+
+            <!-- GROWTH -->
+            <div class="pricing-card glass glass-hover featured reveal stagger-2">
+              <div class="pricing-phase">Phase Two</div>
+              <div class="pricing-name-row">
+                <span class="pricing-name">GROWTH</span>
+                <span class="pricing-popular">Most Popular</span>
+              </div>
+              <div class="pricing-price">$697</div>
+              <ul class="pricing-features">
+                <li><span class="pricing-check">✓</span>Multi-step funnel build</li>
+                <li><span class="pricing-check">✓</span>GHL CRM setup &amp; automation</li>
+                <li><span class="pricing-check">✓</span>Email / SMS follow-up sequences</li>
+                <li><span class="pricing-check">✓</span>Google Business Profile optimization</li>
+                <li><span class="pricing-check">✓</span>Analytics &amp; tracking setup</li>
+                <li><span class="pricing-check">✓</span>Speed + SEO optimization</li>
+                <li><span class="pricing-check">✓</span>2 rounds of revisions</li>
+              </ul>
+              <a href="https://workwithaj.ajautomate.co/#booking" class="btn btn-pricing btn-pricing-featured">Get Started</a>
+            </div>
+
+            <!-- SCALE -->
+            <div class="pricing-card glass glass-hover reveal stagger-3">
+              <div class="pricing-phase">Phase Three</div>
+              <div class="pricing-name-row">
+                <span class="pricing-name">SCALE</span>
+              </div>
+              <div class="pricing-price">$1,896</div>
+              <ul class="pricing-features">
+                <li><span class="pricing-check">✓</span>Full website + funnel system</li>
+                <li><span class="pricing-check">✓</span>Advanced GHL automation workflows</li>
+                <li><span class="pricing-check">✓</span>Google Ads setup &amp; management</li>
+                <li><span class="pricing-check">✓</span>Local SEO campaign</li>
+                <li><span class="pricing-check">✓</span>CRM pipeline + lead scoring</li>
+                <li><span class="pricing-check">✓</span>Monthly performance reporting</li>
+                <li><span class="pricing-check">✓</span>Priority support &amp; unlimited revisions</li>
+              </ul>
+              <a href="https://workwithaj.ajautomate.co/#booking" class="btn btn-pricing btn-pricing-premium">Get Started</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ FAQ ============ -->
+      <section id="faq" class="faq-section section" aria-labelledby="faq-heading">
+        <div class="container">
+          <div class="section-header reveal">
+            <span class="label">System Inquiries</span>
+            <div class="divider"></div>
+            <h2 id="faq-heading">Common Questions</h2>
+          </div>
+
+          <div class="faq-list reveal">
+            <div class="faq-item glass">
+              <button class="faq-question" aria-expanded="false">
+                <span>What kind of websites do you build?</span>
+                <span class="faq-chevron" aria-hidden="true">+</span>
+              </button>
+              <div class="faq-answer">
+                <p>We build high-converting websites and funnels for resorts, caf&eacute;s, hotels, and service-based businesses. Not just something that looks good — but something designed to:</p>
+                <ul>
+                  <li>Turn visitors into bookings</li>
+                  <li>Highlight your experience</li>
+                  <li>Make you stand out in a crowded market</li>
+                </ul>
+              </div>
+            </div>
+            <div class="faq-item glass">
+              <button class="faq-question" aria-expanded="false">
+                <span>What's included in a full website + funnel build?</span>
+                <span class="faq-chevron" aria-hidden="true">+</span>
+              </button>
+              <div class="faq-answer">
+                <p>Everything you need to attract, convert, and close customers:</p>
+                <ul>
+                  <li>Premium website design (mobile optimized)</li>
+                  <li>Booking / inquiry system</li>
+                  <li>Sales funnels for promos &amp; packages</li>
+                  <li>Conversion-focused copywriting</li>
+                  <li>Speed + SEO optimization</li>
+                  <li>Integration (Facebook, WhatsApp, etc.)</li>
+                </ul>
+                <span class="faq-emphasis">This is not just a website — it's a complete customer acquisition system.</span>
+              </div>
+            </div>
+            <div class="faq-item glass">
+              <button class="faq-question" aria-expanded="false">
+                <span>How long does the full build take?</span>
+                <span class="faq-chevron" aria-hidden="true">+</span>
+              </button>
+              <div class="faq-answer">
+                <p>Typically 7–14 days, depending on scope. Fast turnaround — without sacrificing quality. You'll get updates throughout the process, so you're never left guessing.</p>
+              </div>
+            </div>
+            <div class="faq-item glass">
+              <button class="faq-question" aria-expanded="false">
+                <span>Do you offer ongoing support after launch?</span>
+                <span class="faq-chevron" aria-hidden="true">+</span>
+              </button>
+              <div class="faq-answer">
+                <p>Yes. We provide optional ongoing support for:</p>
+                <ul>
+                  <li>Edits &amp; updates</li>
+                  <li>New landing pages or promos</li>
+                  <li>Performance improvements</li>
+                </ul>
+                <span class="faq-emphasis">So your site continues to grow with your business.</span>
+              </div>
+            </div>
+            <div class="faq-item glass">
+              <button class="faq-question" aria-expanded="false">
+                <span>What if I already have a website but it's not converting?</span>
+                <span class="faq-chevron" aria-hidden="true">+</span>
+              </button>
+              <div class="faq-answer">
+                <p>That's exactly what we fix. We:</p>
+                <ul>
+                  <li>Audit your current website</li>
+                  <li>Identify what's hurting conversions</li>
+                  <li>Rebuild it into a conversion-focused funnel</li>
+                </ul>
+                <span class="faq-emphasis">Most websites don't fail because of design — they fail because they don't guide action.</span>
+              </div>
+            </div>
+            <div class="faq-item glass">
+              <button class="faq-question" aria-expanded="false">
+                <span>Will this actually bring me more customers?</span>
+                <span class="faq-chevron" aria-hidden="true">+</span>
+              </button>
+              <div class="faq-answer">
+                <p>If your business already has demand — yes. We focus on:</p>
+                <ul>
+                  <li>Clear messaging</li>
+                  <li>Strong offers</li>
+                  <li>Smooth booking experience</li>
+                </ul>
+                <span class="faq-emphasis">Turning your website into a 24/7 sales machine.</span>
+              </div>
+            </div>
+            <div class="faq-item glass">
+              <button class="faq-question" aria-expanded="false">
+                <span>How is this different from a normal web designer?</span>
+                <span class="faq-chevron" aria-hidden="true">+</span>
+              </button>
+              <div class="faq-answer">
+                <p>Most designers focus on visuals. We focus on:</p>
+                <ul>
+                  <li>Conversions</li>
+                  <li>Customer psychology</li>
+                  <li>Revenue</li>
+                </ul>
+                <span class="faq-emphasis">So instead of just "looking nice," your website actually drives results.</span>
+              </div>
+            </div>
+            <div class="faq-item glass">
+              <button class="faq-question" aria-expanded="false">
+                <span>Do I need ads for this to work?</span>
+                <span class="faq-chevron" aria-hidden="true">+</span>
+              </button>
+              <div class="faq-answer">
+                <p>Not required — but highly recommended. Your funnel performs best with:</p>
+                <ul>
+                  <li>Facebook / Instagram ads</li>
+                  <li>Organic content traffic</li>
+                </ul>
+                <span class="faq-emphasis">We can guide or help set this up if needed.</span>
+              </div>
+            </div>
+            <div class="faq-item glass">
+              <button class="faq-question" aria-expanded="false">
+                <span>How do we get started?</span>
+                <span class="faq-chevron" aria-hidden="true">+</span>
+              </button>
+              <div class="faq-answer">
+                <p>Simple.</p>
+                <ul>
+                  <li>Message us</li>
+                  <li>We understand your goals</li>
+                  <li>We map your funnel</li>
+                  <li>We build, launch, and optimize</li>
+                </ul>
+                <span class="faq-emphasis">Straightforward. No fluff. Just results.</span>
+              </div>
+            </div>
+            <div class="faq-item glass">
+              <button class="faq-question" aria-expanded="false">
+                <span>What if I don't see results?</span>
+                <span class="faq-chevron" aria-hidden="true">+</span>
+              </button>
+              <div class="faq-answer">
+                <p>We don't win unless you do. That's why we build your website and funnel around:</p>
+                <ul>
+                  <li>Proven structures</li>
+                  <li>Conversion-focused design</li>
+                  <li>Real customer behavior</li>
+                </ul>
+                <p style="margin-top: 8px;">And if something isn't performing after launch, we work with you to refine and optimize it — not leave you hanging.</p>
+                <span class="faq-emphasis">Because at the end of the day, this isn't about a website… It's about getting you more customers.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ MORE SHOWCASE AFTER FAQ ============ -->
+      <section class="showcase-section section" aria-label="More portfolio work">
+        <div class="container">
+          <div class="showcase-label reveal">More Projects We've Built</div>
+          <div class="showcase-grid reveal">
+            <div class="showcase-card glass-hover">
+              <div class="showcase-preview">
+                <div class="showcase-preview-inner">
+                  <div class="showcase-browser-dots"><span></span><span></span><span></span></div>
+                  <div class="showcase-browser-body">
+                    <div class="showcase-browser-bar w60"></div>
+                    <div class="showcase-browser-bar accent"></div>
+                    <div class="showcase-browser-blocks">
+                      <div class="showcase-browser-block"></div>
+                      <div class="showcase-browser-block"></div>
+                    </div>
+                    <div class="showcase-browser-bar w70"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="showcase-meta">
+                <div class="showcase-meta-left">
+                  <div class="showcase-meta-title">Aesthetic Skin Clinic</div>
+                  <div class="showcase-meta-type">Website + Appointment Funnel</div>
+                </div>
+                <span class="showcase-meta-tag">Skin Clinic</span>
+              </div>
+            </div>
+
+            <div class="showcase-card glass-hover">
+              <div class="showcase-preview">
+                <div class="showcase-preview-inner">
+                  <div class="showcase-browser-dots"><span></span><span></span><span></span></div>
+                  <div class="showcase-browser-body">
+                    <div class="showcase-browser-bar w80"></div>
+                    <div class="showcase-browser-bar w40"></div>
+                    <div class="showcase-browser-bar accent"></div>
+                    <div class="showcase-browser-blocks">
+                      <div class="showcase-browser-block"></div>
+                      <div class="showcase-browser-block"></div>
+                      <div class="showcase-browser-block"></div>
+                      <div class="showcase-browser-block"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="showcase-meta">
+                <div class="showcase-meta-left">
+                  <div class="showcase-meta-title">Boutique Hotel — Cebu</div>
+                  <div class="showcase-meta-type">Full Website + CRM Pipeline</div>
+                </div>
+                <span class="showcase-meta-tag">Hotel</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ CLOSING SECTION ============ -->
+      <section class="closing-section section" aria-labelledby="closing-heading">
+        <div class="container">
+          <div class="reveal">
+            <h2 id="closing-heading" class="closing-headline">
+              Your Business<br>Deserves a Website<br>That <span class="text-yellow">Actually</span><br>Works.
+            </h2>
+            <p class="closing-sub">
+              Not a template. Not a pretty page that sits there. A website built to convert visitors into paying customers — every single day.
+            </p>
+            <div class="closing-cta-wrap">
+              <a href="https://workwithaj.ajautomate.co/#booking" class="btn btn-closing btn-arrow">Let's Build Your Website</a>
+              <p class="cta-trust" style="margin-top: 4px;">Free consultation · No templates · Built to convert</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+      <div class="container footer-inner">
+        <div class="footer-logo">WEBDEV BY <span>AJ</span></div>
+        <p class="footer-copy">&copy; 2026 All rights reserved. Premium Websites &amp; Funnels.</p>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    // Scroll reveal
+    (function() {
+      var reveals = document.querySelectorAll('.reveal');
+      function check() {
+        var trigger = window.innerHeight * 0.88;
+        reveals.forEach(function(el) {
+          if (el.getBoundingClientRect().top < trigger) el.classList.add('visible');
+        });
+      }
+      window.addEventListener('scroll', check, { passive: true });
+      window.addEventListener('resize', check, { passive: true });
+      check();
+    })();
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var item = this.closest('.faq-item');
+        var isOpen = item.classList.contains('open');
+        // Close all
+        document.querySelectorAll('.faq-item.open').forEach(function(openItem) {
+          openItem.classList.remove('open');
+          openItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+        });
+        // Toggle current
+        if (!isOpen) {
+          item.classList.add('open');
+          this.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
