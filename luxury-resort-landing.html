@@ -484,6 +484,18 @@
       object-fit: cover;
       display: block;
     }
+    .image-card-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 12px 16px;
+      background: linear-gradient(to top, rgba(8,6,18,0.85) 0%, transparent 100%);
+      color: #fff;
+      font-size: var(--text-sm);
+      font-weight: 600;
+      text-align: center;
+    }
     .image-card-overlay {
       position: absolute;
       inset: 0;
@@ -1463,24 +1475,18 @@
       <div class="image-break">
         <div class="container">
           <div class="image-grid reveal">
-            <div class="image-card">
-              <div class="image-card-placeholder">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-                <span>Resort / Hotel<br><em style="opacity:0.5">Replace with your photo</em></span>
-              </div>
-            </div>
-            <div class="image-card">
-              <div class="image-card-placeholder">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-                <span>Restaurant / Caf&eacute;<br><em style="opacity:0.5">Replace with your photo</em></span>
-              </div>
-            </div>
-            <div class="image-card">
-              <div class="image-card-placeholder">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-                <span>Dental / Skin Clinic<br><em style="opacity:0.5">Replace with your photo</em></span>
-              </div>
-            </div>
+            <a href="https://merbau-beach-resort.vercel.app/" target="_blank" rel="noopener noreferrer" class="image-card" style="text-decoration:none;color:inherit;">
+              <img src="assets/resort-thumb.jpg" alt="Resort / Hotel" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;" loading="lazy" />
+              <div class="image-card-label">Resort / Hotel</div>
+            </a>
+            <a href="https://amberbrew-cafe.vercel.app/" target="_blank" rel="noopener noreferrer" class="image-card" style="text-decoration:none;color:inherit;">
+              <img src="assets/cafe-thumb.jpg" alt="Restaurant / Café" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;" loading="lazy" />
+              <div class="image-card-label">Restaurant / Caf&eacute;</div>
+            </a>
+            <a href="https://smilecraft-dental-ten.vercel.app/" target="_blank" rel="noopener noreferrer" class="image-card" style="text-decoration:none;color:inherit;">
+              <img src="assets/dental-thumb.jpg" alt="Dental / Skin Clinic" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;" loading="lazy" />
+              <div class="image-card-label">Dental / Skin Clinic</div>
+            </a>
           </div>
         </div>
       </div>
