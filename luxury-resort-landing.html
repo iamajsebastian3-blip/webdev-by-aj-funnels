@@ -535,6 +535,43 @@
       padding: 32px;
       position: relative;
       overflow: hidden;
+      border: none;
+      background: var(--color-glass);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 16px;
+    }
+    .pillar::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 16px;
+      padding: 1px;
+      background: conic-gradient(
+        from var(--gradient-angle, 0deg),
+        rgba(94, 23, 235, 0.05),
+        rgba(94, 23, 235, 0.4),
+        rgba(124, 58, 255, 0.6),
+        rgba(245, 197, 24, 0.3),
+        rgba(124, 58, 255, 0.6),
+        rgba(94, 23, 235, 0.4),
+        rgba(94, 23, 235, 0.05)
+      );
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+      animation: rotateGradient 4s linear infinite;
+      pointer-events: none;
+    }
+    @property --gradient-angle {
+      syntax: '<angle>';
+      initial-value: 0deg;
+      inherits: false;
+    }
+    @keyframes rotateGradient {
+      0% { --gradient-angle: 0deg; }
+      100% { --gradient-angle: 360deg; }
     }
     .pillar-number {
       position: absolute;
@@ -668,6 +705,13 @@
       background: linear-gradient(135deg, rgba(94,23,235,0.4), rgba(94,23,235,0.15));
       display: flex; align-items: center; justify-content: center;
       font-size: 13px; font-weight: 700; color: var(--color-purple-bright);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .testimonial-avatar img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
     }
     .testimonial-name { font-size: var(--text-sm); font-weight: 600; color: var(--color-text-primary); }
     .testimonial-role { font-size: var(--text-xs); color: var(--color-text-tertiary); }
@@ -854,146 +898,6 @@
     @media (max-width: 480px) {
       .container { padding: 0 16px; }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
-      .pricing-grid { grid-template-columns: 1fr; }
-    }
-
-    /* ==================== PRICING ==================== */
-    .pricing-section { position: relative; }
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      align-items: stretch;
-    }
-    @media (max-width: 768px) {
-      .pricing-grid { grid-template-columns: 1fr; }
-    }
-    .pricing-card {
-      padding: 32px;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      overflow: hidden;
-    }
-    .pricing-card.featured {
-      border-color: rgba(94, 23, 235, 0.35);
-    }
-    .pricing-card.featured::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--color-purple), var(--color-purple-bright));
-    }
-    .pricing-phase {
-      font-size: var(--text-xs);
-      color: var(--color-text-tertiary);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-    .pricing-name-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 16px;
-    }
-    .pricing-name {
-      font-size: var(--text-sm);
-      font-weight: 800;
-      color: var(--color-text-primary);
-      padding: 4px 12px;
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 6px;
-      display: inline-block;
-    }
-    .pricing-card.featured .pricing-name {
-      background: var(--color-yellow);
-      color: #080612;
-      border-color: var(--color-yellow);
-    }
-    .pricing-popular {
-      font-size: 10px;
-      font-weight: 800;
-      color: var(--color-yellow);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-    .pricing-price {
-      font-size: var(--text-4xl);
-      font-weight: 900;
-      color: var(--color-text-primary);
-      letter-spacing: -0.03em;
-      margin-bottom: 24px;
-      line-height: 1;
-    }
-    .pricing-card:last-child .pricing-price {
-      background: linear-gradient(135deg, var(--color-text-primary), var(--color-purple-bright));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .pricing-features {
-      list-style: none;
-      flex: 1;
-      margin-bottom: 28px;
-    }
-    .pricing-features li {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      padding: 6px 0;
-      font-size: var(--text-sm);
-      color: var(--color-text-secondary);
-      line-height: 1.5;
-    }
-    .pricing-check {
-      flex-shrink: 0;
-      width: 18px; height: 18px;
-      border-radius: 50%;
-      background: rgba(94, 23, 235, 0.15);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 10px;
-      color: var(--color-purple-bright);
-      margin-top: 2px;
-    }
-    .pricing-card.featured .pricing-check {
-      background: var(--color-yellow-dim);
-      color: var(--color-yellow);
-    }
-    .btn-pricing {
-      width: 100%;
-      justify-content: center;
-      padding: 14px 24px;
-      border-radius: 100px;
-      font-size: var(--text-sm);
-    }
-    .btn-pricing-default {
-      background: rgba(255,255,255,0.06);
-      color: var(--color-text-primary);
-      border: 1px solid rgba(255,255,255,0.1);
-    }
-    .btn-pricing-default:hover {
-      background: rgba(255,255,255,0.1);
-      border-color: rgba(255,255,255,0.2);
-    }
-    .btn-pricing-featured {
-      background: var(--color-yellow);
-      color: #080612;
-      border: none;
-    }
-    .btn-pricing-featured:hover {
-      background: var(--color-yellow-hover);
-      box-shadow: 0 4px 20px rgba(245, 197, 24, 0.3);
-    }
-    .btn-pricing-premium {
-      background: var(--color-purple);
-      color: white;
-      border: none;
-    }
-    .btn-pricing-premium:hover {
-      background: var(--color-purple-bright);
-      box-shadow: 0 4px 20px rgba(94, 23, 235, 0.3);
     }
 
     /* FAQ answer lists */
@@ -1076,6 +980,22 @@
       border: 1px solid rgba(94, 23, 235, 0.15);
       position: relative;
       overflow: hidden;
+    }
+    .showcase-preview.has-thumb {
+      padding: 0;
+      background: none;
+    }
+    .showcase-preview.has-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+    .showcase-card a.showcase-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
     }
     .showcase-browser-dots {
       display: flex;
@@ -1348,13 +1268,13 @@
               </p>
 
               <div class="hero-ctas">
-                <a href="https://workwithaj.ajautomate.co/" class="btn btn-primary btn-arrow">Check Our Premium Websites</a>
+                <a href="https://webstudio.ajautomate.co/" class="btn btn-primary btn-arrow">Check Our Premium Websites</a>
               </div>
 
               <ul class="hero-socials" aria-label="Social links">
-                <li><a href="#" aria-label="TikTok">tk</a></li>
-                <li><a href="#" aria-label="Facebook">f</a></li>
-                <li><a href="#" aria-label="Instagram">ig</a></li>
+                <li><a href="#" aria-label="TikTok"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.75a8.18 8.18 0 0 0 3.76.92V6.69z"/></svg></a></li>
+                <li><a href="#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a></li>
+                <li><a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg></a></li>
               </ul>
             </div>
 
@@ -1504,7 +1424,7 @@
           <p class="solution-intro-sub reveal">Clear, premium, outcome-focused websites that turn your online presence into an inquiry machine.</p>
 
           <div class="pillars">
-            <div class="pillar glass glass-hover reveal stagger-1">
+            <div class="pillar reveal stagger-1">
               <span class="pillar-number">MOD_01</span>
               <div class="pillar-icon">🏛️</div>
               <h4>Luxury Website Design</h4>
@@ -1512,7 +1432,7 @@
               <p>A sleek, modern website that instantly communicates premium quality. Your digital storefront should feel as good as walking through your front door.</p>
             </div>
 
-            <div class="pillar glass glass-hover reveal stagger-2">
+            <div class="pillar reveal stagger-2">
               <span class="pillar-number">MOD_02</span>
               <div class="pillar-icon">🔄</div>
               <h4>High-Converting Funnels</h4>
@@ -1520,7 +1440,7 @@
               <p>We guide visitors step-by-step through a proven journey. No confusion. No drop-offs. Just a seamless path from discovery to messaging you on WhatsApp or Messenger.</p>
             </div>
 
-            <div class="pillar glass glass-hover reveal stagger-3">
+            <div class="pillar reveal stagger-3">
               <span class="pillar-number">MOD_03</span>
               <div class="pillar-icon">💬</div>
               <h4>Auto Response &amp; Redirect</h4>
@@ -1533,7 +1453,7 @@
               </ul>
             </div>
 
-            <div class="pillar glass glass-hover reveal stagger-4">
+            <div class="pillar reveal stagger-4">
               <span class="pillar-number">MOD_04</span>
               <div class="pillar-icon">💎</div>
               <h4>Premium Positioning</h4>
@@ -1561,79 +1481,48 @@
 
           <div class="showcase-grid reveal">
             <div class="showcase-card featured-showcase glass-hover">
-              <div class="showcase-preview">
-                <div class="showcase-preview-inner">
-                  <div class="showcase-browser-dots"><span></span><span></span><span></span></div>
-                  <div class="showcase-browser-body">
-                    <div class="showcase-browser-bar w60"></div>
-                    <div class="showcase-browser-bar w80"></div>
-                    <div class="showcase-browser-bar accent"></div>
-                    <div class="showcase-browser-blocks">
-                      <div class="showcase-browser-block"></div>
-                      <div class="showcase-browser-block"></div>
-                      <div class="showcase-browser-block"></div>
-                      <div class="showcase-browser-block"></div>
-                    </div>
-                    <div class="showcase-browser-bar w70"></div>
-                    <div class="showcase-browser-bar w40"></div>
+              <a href="https://aviora-coast.vercel.app/" target="_blank" rel="noopener noreferrer" class="showcase-link">
+                <div class="showcase-preview has-thumb">
+                  <img src="assets/aviora-thumb.jpg" alt="Luxury Beach Resort — Zambales" loading="lazy" />
+                </div>
+                <div class="showcase-meta">
+                  <div class="showcase-meta-left">
+                    <div class="showcase-meta-title">Luxury Beach Resort — Zambales</div>
+                    <div class="showcase-meta-type">Full Website + Messenger Funnel</div>
                   </div>
+                  <span class="showcase-meta-tag">Resort</span>
                 </div>
-              </div>
-              <div class="showcase-meta">
-                <div class="showcase-meta-left">
-                  <div class="showcase-meta-title">Luxury Beach Resort — Batangas</div>
-                  <div class="showcase-meta-type">Full Website + Messenger Funnel</div>
-                </div>
-                <span class="showcase-meta-tag">Resort</span>
-              </div>
+              </a>
             </div>
 
             <div class="showcase-card glass-hover">
-              <div class="showcase-preview">
-                <div class="showcase-preview-inner">
-                  <div class="showcase-browser-dots"><span></span><span></span><span></span></div>
-                  <div class="showcase-browser-body">
-                    <div class="showcase-browser-bar w80"></div>
-                    <div class="showcase-browser-bar w40"></div>
-                    <div class="showcase-browser-bar accent"></div>
-                    <div class="showcase-browser-blocks">
-                      <div class="showcase-browser-block"></div>
-                      <div class="showcase-browser-block"></div>
-                    </div>
+              <a href="https://coach-gym-funnel.vercel.app/" target="_blank" rel="noopener noreferrer" class="showcase-link">
+                <div class="showcase-preview has-thumb">
+                  <img src="assets/ironforge-thumb.jpg" alt="Ironforge Gym" loading="lazy" />
+                </div>
+                <div class="showcase-meta">
+                  <div class="showcase-meta-left">
+                    <div class="showcase-meta-title">Ironforge Gym</div>
+                    <div class="showcase-meta-type">Website + Coaching Funnel</div>
                   </div>
+                  <span class="showcase-meta-tag">Gym</span>
                 </div>
-              </div>
-              <div class="showcase-meta">
-                <div class="showcase-meta-left">
-                  <div class="showcase-meta-title">Premium Dental Clinic</div>
-                  <div class="showcase-meta-type">Website + Lead Gen Funnel</div>
-                </div>
-                <span class="showcase-meta-tag">Clinic</span>
-              </div>
+              </a>
             </div>
 
             <div class="showcase-card glass-hover">
-              <div class="showcase-preview">
-                <div class="showcase-preview-inner">
-                  <div class="showcase-browser-dots"><span></span><span></span><span></span></div>
-                  <div class="showcase-browser-body">
-                    <div class="showcase-browser-bar w70"></div>
-                    <div class="showcase-browser-bar w60"></div>
-                    <div class="showcase-browser-bar accent"></div>
-                    <div class="showcase-browser-blocks">
-                      <div class="showcase-browser-block"></div>
-                      <div class="showcase-browser-block"></div>
-                    </div>
+              <a href="https://the-cozy-cup-one.vercel.app/" target="_blank" rel="noopener noreferrer" class="showcase-link">
+                <div class="showcase-preview has-thumb">
+                  <img src="assets/cozycup-thumb.jpg" alt="Cozy Cup" loading="lazy" />
+                </div>
+                <div class="showcase-meta">
+                  <div class="showcase-meta-left">
+                    <div class="showcase-meta-title">Cozy Cup</div>
+                    <div class="showcase-meta-type">Website + Cafe Funnel</div>
                   </div>
+                  <span class="showcase-meta-tag">Cafe</span>
                 </div>
-              </div>
-              <div class="showcase-meta">
-                <div class="showcase-meta-left">
-                  <div class="showcase-meta-title">Rooftop Restaurant — BGC</div>
-                  <div class="showcase-meta-type">Website + WhatsApp Funnel</div>
-                </div>
-                <span class="showcase-meta-tag">Restaurant</span>
-              </div>
+              </a>
             </div>
           </div>
         </div>
@@ -1702,10 +1591,12 @@
               </div>
               <p class="testimonial-text">"Our Messenger inquiries went up 340% the first month after AJ rebuilt our website and funnel. We had to hire more staff just to keep up with the messages."</p>
               <div class="testimonial-author">
-                <div class="testimonial-avatar">PM</div>
+                <div class="testimonial-avatar">
+                  <img src="assets/testimonial-patricia.jpg" alt="Patricia Mendoza" loading="lazy" />
+                </div>
                 <div>
                   <div class="testimonial-name">Patricia Mendoza</div>
-                  <div class="testimonial-role">Resort Owner, Batangas</div>
+                  <div class="testimonial-role">Resort Owner, Zambales</div>
                 </div>
               </div>
             </div>
@@ -1720,7 +1611,9 @@
               </div>
               <p class="testimonial-text">"They really got the business workflow. What we got wasn't just a pretty website — they mapped the pipeline, automated trigger tags, and reduced friction everywhere."</p>
               <div class="testimonial-author">
-                <div class="testimonial-avatar">RC</div>
+                <div class="testimonial-avatar">
+                  <img src="assets/testimonial-marco.jpg" alt="Marco De Guzman" loading="lazy" />
+                </div>
                 <div>
                   <div class="testimonial-name">Marco De Guzman</div>
                   <div class="testimonial-role">Boutique Hotel, Palawan</div>
@@ -1738,7 +1631,9 @@
               </div>
               <p class="testimonial-text">"I knew our place was beautiful, but online it didn't show. Since the rebrand and new funnel, we've been fully booked three weekends straight. New league entirely."</p>
               <div class="testimonial-author">
-                <div class="testimonial-avatar">AS</div>
+                <div class="testimonial-avatar">
+                  <img src="assets/testimonial-angela.jpg" alt="Angela Santos" loading="lazy" />
+                </div>
                 <div>
                   <div class="testimonial-name">Angela Santos</div>
                   <div class="testimonial-role">Café Owner, Tagaytay</div>
@@ -1767,7 +1662,7 @@
             </h2>
 
             <div class="cta-buttons">
-              <a href="https://workwithaj.ajautomate.co/" class="btn btn-primary btn-arrow">Check Our Premium Websites</a>
+              <a href="https://webstudio.ajautomate.co/" class="btn btn-primary btn-arrow">Check Our Premium Websites</a>
             </div>
 
             <p class="cta-trust">See real results · No templates · Built to convert</p>
@@ -1775,76 +1670,6 @@
         </div>
       </section>
 
-      <!-- ============ PRICING ============ -->
-      <section id="pricing" class="pricing-section section" aria-labelledby="pricing-heading">
-        <div class="container">
-          <div class="section-header reveal">
-            <span class="label">Investment</span>
-            <div class="divider"></div>
-            <h2 id="pricing-heading">Choose Your Build</h2>
-            <p>Every package is custom-built to convert. No templates. No shortcuts.</p>
-          </div>
-
-          <div class="pricing-grid">
-            <!-- STARTER -->
-            <div class="pricing-card glass glass-hover reveal stagger-1">
-              <div class="pricing-phase">Phase One</div>
-              <div class="pricing-name-row">
-                <span class="pricing-name">STARTER</span>
-              </div>
-              <div class="pricing-price">$297</div>
-              <ul class="pricing-features">
-                <li><span class="pricing-check">✓</span>1-page funnel build</li>
-                <li><span class="pricing-check">✓</span>Mobile-optimized design</li>
-                <li><span class="pricing-check">✓</span>Messenger / WhatsApp redirect integration</li>
-                <li><span class="pricing-check">✓</span>Conversion-focused copywriting</li>
-                <li><span class="pricing-check">✓</span>Basic SEO setup</li>
-                <li><span class="pricing-check">✓</span>1 round of revisions</li>
-              </ul>
-              <a href="consultation.html" class="btn btn-pricing btn-pricing-default">Get Started</a>
-            </div>
-
-            <!-- GROWTH -->
-            <div class="pricing-card glass glass-hover featured reveal stagger-2">
-              <div class="pricing-phase">Phase Two</div>
-              <div class="pricing-name-row">
-                <span class="pricing-name">GROWTH</span>
-                <span class="pricing-popular">Most Popular</span>
-              </div>
-              <div class="pricing-price">$697</div>
-              <ul class="pricing-features">
-                <li><span class="pricing-check">✓</span>Multi-step funnel build</li>
-                <li><span class="pricing-check">✓</span>GHL CRM setup &amp; automation</li>
-                <li><span class="pricing-check">✓</span>Email / SMS follow-up sequences</li>
-                <li><span class="pricing-check">✓</span>Google Business Profile optimization</li>
-                <li><span class="pricing-check">✓</span>Analytics &amp; tracking setup</li>
-                <li><span class="pricing-check">✓</span>Speed + SEO optimization</li>
-                <li><span class="pricing-check">✓</span>2 rounds of revisions</li>
-              </ul>
-              <a href="consultation.html" class="btn btn-pricing btn-pricing-featured">Get Started</a>
-            </div>
-
-            <!-- SCALE -->
-            <div class="pricing-card glass glass-hover reveal stagger-3">
-              <div class="pricing-phase">Phase Three</div>
-              <div class="pricing-name-row">
-                <span class="pricing-name">SCALE</span>
-              </div>
-              <div class="pricing-price">$1,896</div>
-              <ul class="pricing-features">
-                <li><span class="pricing-check">✓</span>Full website + funnel system</li>
-                <li><span class="pricing-check">✓</span>Advanced GHL automation workflows</li>
-                <li><span class="pricing-check">✓</span>Google Ads setup &amp; management</li>
-                <li><span class="pricing-check">✓</span>Local SEO campaign</li>
-                <li><span class="pricing-check">✓</span>CRM pipeline + lead scoring</li>
-                <li><span class="pricing-check">✓</span>Monthly performance reporting</li>
-                <li><span class="pricing-check">✓</span>Priority support &amp; unlimited revisions</li>
-              </ul>
-              <a href="consultation.html" class="btn btn-pricing btn-pricing-premium">Get Started</a>
-            </div>
-          </div>
-        </div>
-      </section>
 
       <!-- ============ FAQ ============ -->
       <section id="faq" class="faq-section section" aria-labelledby="faq-heading">
