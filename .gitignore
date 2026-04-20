@@ -1,0 +1,16 @@
+# Vercel
+.vercel
+
+# Editor / IDE settings (personal, not shared)
+.vscode/
+
+# Playwright MCP debug artifacts
+.playwright-mcp/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Python build artifacts (from PDF generator script)
+__pycache__/
+*.pyc
