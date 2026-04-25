@@ -486,6 +486,262 @@
       .hero-showcase-tag { right: 8px; }
     }
 
+    /* ==================== V6 HERO — COVERFLOW + FREE LAYOUT OFFER ==================== */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 0 80px;
+      overflow: hidden;
+    }
+    .hero-inner {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .cf-shell { width: 100%; position: relative; margin-bottom: 8px; }
+    .coverflow {
+      position: relative;
+      width: 100%;
+      height: 540px;
+      perspective: 2000px;
+      user-select: none;
+    }
+    .coverflow-stage {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+    }
+    .cf-card {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: clamp(180px, 17vw, 240px);
+      aspect-ratio: 5 / 9;
+      transform-origin: 50% 100%;
+      transition: transform 700ms cubic-bezier(0.2, 0.8, 0.2, 1), opacity 600ms ease, filter 600ms ease, box-shadow 500ms ease;
+      will-change: transform, opacity, filter;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5), 0 6px 20px rgba(94, 23, 235, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: #1a1a1a;
+    }
+    .cf-card-image {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      transition: transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .cf-card-overlay {
+      position: absolute; left: 0; right: 0; bottom: 0;
+      padding: 22px 16px 14px;
+      background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 100%);
+      pointer-events: none;
+      z-index: 2;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .cf-card-name {
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+    }
+    .cf-card-icon {
+      width: 14px; height: 14px;
+      color: rgba(255,255,255,0.85);
+    }
+    .cf-card[data-pos="0"] {
+      transform: translate(-50%, -50%) translateY(-8px) translateZ(140px) scale(1.08);
+      z-index: 10;
+      opacity: 1;
+      box-shadow: 0 50px 100px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(124, 58, 255, 0.3), 0 0 60px rgba(94, 23, 235, 0.4);
+    }
+    .cf-card[data-pos="1"] {
+      transform: translate(-50%, -50%) translateX(80%) translateY(28px) translateZ(40px) rotateY(-10deg) scale(0.92);
+      z-index: 8;
+      opacity: 0.95;
+    }
+    .cf-card[data-pos="-1"] {
+      transform: translate(-50%, -50%) translateX(-80%) translateY(28px) translateZ(40px) rotateY(10deg) scale(0.92);
+      z-index: 8;
+      opacity: 0.95;
+    }
+    .cf-card[data-pos="2"] {
+      transform: translate(-50%, -50%) translateX(150%) translateY(60px) translateZ(-60px) rotateY(-16deg) scale(0.78);
+      z-index: 5;
+      opacity: 0.75;
+      filter: brightness(0.8);
+    }
+    .cf-card[data-pos="-2"] {
+      transform: translate(-50%, -50%) translateX(-150%) translateY(60px) translateZ(-60px) rotateY(16deg) scale(0.78);
+      z-index: 5;
+      opacity: 0.75;
+      filter: brightness(0.8);
+    }
+    .cf-card[data-pos="hidden"] {
+      transform: translate(-50%, -50%) translateZ(-300px) scale(0.5);
+      opacity: 0;
+      pointer-events: none;
+    }
+    .cf-card[data-pos="0"]:hover .cf-card-image { transform: scale(1.04); }
+
+    .cf-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: rgba(15, 15, 15, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--color-text-primary);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+      transition: background 200ms, border-color 200ms, transform 200ms;
+      z-index: 20;
+    }
+    .cf-arrow:hover { background: rgba(94, 23, 235, 0.55); border-color: var(--color-purple-bright); }
+    .cf-arrow:active { transform: translateY(-50%) scale(0.94); }
+    .cf-arrow:focus-visible { outline: 2px solid #5dd5ff; outline-offset: 3px; }
+    .cf-arrow svg { width: 22px; height: 22px; }
+    .cf-arrow-prev { left: 12px; }
+    .cf-arrow-next { right: 12px; }
+
+    .cf-dots {
+      display: flex; justify-content: center; gap: 8px;
+      margin-top: 4px;
+    }
+    .cf-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.18);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: background 200ms, width 200ms;
+    }
+    .cf-dot.active {
+      background: linear-gradient(90deg, var(--color-purple-bright), #5dd5ff);
+      width: 24px; border-radius: 100px;
+    }
+    .cf-dot:focus-visible { outline: 2px solid #5dd5ff; outline-offset: 3px; }
+
+    .brand-title {
+      font-size: clamp(2.6rem, 8vw, 6.5rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin: 32px 0 0;
+      background: linear-gradient(90deg, #8a3fff 0%, #6090ff 50%, #5dd5ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-transform: uppercase;
+    }
+    .brand-tagline {
+      font-size: var(--text-lg);
+      color: var(--color-text-secondary);
+      margin-top: 12px;
+      font-weight: 500;
+    }
+
+    .cta-wrap {
+      margin-top: 32px;
+      display: flex; flex-direction: column; align-items: center; gap: 14px;
+    }
+    .cta-btn {
+      display: inline-flex; align-items: center; gap: 12px;
+      padding: 18px 44px;
+      background: linear-gradient(90deg, var(--color-purple), var(--color-purple-bright) 60%, #6090ff);
+      color: #fff;
+      border: none;
+      border-radius: 100px;
+      font-weight: 800;
+      font-size: var(--text-base);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 16px 40px rgba(94, 23, 235, 0.45), 0 0 0 1px rgba(255,255,255,0.06) inset;
+      transition: transform 200ms, box-shadow 200ms, filter 200ms;
+    }
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 22px 56px rgba(94, 23, 235, 0.6), 0 0 0 1px rgba(255,255,255,0.12) inset;
+      filter: brightness(1.08);
+    }
+    .cta-btn:active { transform: translateY(0) scale(0.98); }
+    .cta-icon { width: 20px; height: 20px; }
+    .cta-trust { font-size: var(--text-xs); color: var(--color-text-tertiary); letter-spacing: 0.06em; }
+
+    .features {
+      margin-top: 64px;
+      width: 100%;
+      max-width: 1200px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 32px;
+    }
+    .feature {
+      display: flex; gap: 14px; align-items: flex-start;
+      text-align: left;
+    }
+    .feature-icon {
+      flex-shrink: 0;
+      width: 36px; height: 36px;
+      color: var(--color-purple-bright);
+      filter: drop-shadow(0 2px 8px rgba(94, 23, 235, 0.4));
+    }
+    .feature-icon svg { width: 100%; height: 100%; }
+    .feature-title {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-text-primary);
+      margin-bottom: 6px;
+    }
+    .feature-desc {
+      font-size: 12px;
+      color: var(--color-text-tertiary);
+      line-height: 1.5;
+    }
+
+    @media (max-width: 960px) {
+      .coverflow { height: 480px; }
+      .cf-card { width: clamp(160px, 26vw, 220px); }
+      .features { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    }
+    @media (max-width: 700px) {
+      .coverflow { height: 420px; }
+      .cf-card { width: clamp(150px, 38vw, 200px); }
+      .cf-card[data-pos="2"], .cf-card[data-pos="-2"] { opacity: 0; pointer-events: none; }
+      .cf-card[data-pos="1"]  { transform: translate(-50%, -50%) translateX(58%)  translateY(20px) rotateY(-8deg) scale(0.85); }
+      .cf-card[data-pos="-1"] { transform: translate(-50%, -50%) translateX(-58%) translateY(20px) rotateY(8deg)  scale(0.85); }
+      .features { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+      .cta-btn { padding: 16px 32px; font-size: var(--text-sm); width: 100%; max-width: 320px; justify-content: center; }
+    }
+    @media (max-width: 480px) {
+      .features { grid-template-columns: 1fr; }
+      .feature { justify-content: center; max-width: 280px; margin: 0 auto; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .cf-card, .cf-card-image { transition-duration: 0.01ms !important; }
+    }
+
     /* ==================== SOCIAL PROOF STRIP ==================== */
     .proof-strip {
       padding: 40px 0;
@@ -1518,113 +1774,110 @@
       <!-- ============ HERO ============ -->
       <header class="hero section" role="banner">
         <div class="container">
-          <div class="hero-grid">
+          <div class="hero-inner">
 
-            <!-- Left -->
-            <div class="hero-animate">
-              <div class="hero-badge">
-                <div class="hero-badge-dot" aria-hidden="true"></div>
-                <span>Available for local &amp; international clients</span>
+            <!-- Card carousel (top) -->
+            <div class="cf-shell">
+              <div class="coverflow" id="coverflow" aria-roledescription="carousel" aria-label="Live websites built by WEBDEV by AJ">
+                <div class="coverflow-stage" id="cfStage"></div>
+
+                <button type="button" class="cf-arrow cf-arrow-prev" id="cfPrev" aria-label="Previous website">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                </button>
+                <button type="button" class="cf-arrow cf-arrow-next" id="cfNext" aria-label="Next website">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                </button>
               </div>
 
-              <h1>Your Business Looks Premium. <span class="text-yellow">But Your Online Presence Doesn't.</span></h1>
+              <div class="cf-dots" id="cfDots" role="tablist" aria-label="Choose a website"></div>
+            </div>
 
-              <p class="hero-sub">
-                You've invested heavily into your resort, restaurant, or clinic&hellip;
-                but if your website doesn't reflect that — you're silently losing high-paying customers every day.
-              </p>
+            <!-- Brand title -->
+            <h1 class="brand-title">WEBDEV BY AJ</h1>
+            <p class="brand-tagline">Free website layout for local businesses</p>
 
-              <p class="hero-value">
-                We design premium websites + high-converting funnels
-                that turn casual browsers into booked, paying customers.
-              </p>
+            <!-- CTA -->
+            <div class="cta-wrap">
+              <a href="consultation.html" class="cta-btn">
+                <svg class="cta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="22" y1="2" x2="11" y2="13"/>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                </svg>
+                Let's Build Your Website
+              </a>
+              <span class="cta-trust">No credit card · No obligations · Just a conversation</span>
+            </div>
 
-              <p class="hero-punch">
-                Because in today's market — people don't visit first… they Google first.
-              </p>
-
-              <div class="hero-ctas">
-                <a href="#freebie" class="btn btn-primary btn-arrow">Get the Free Checklist</a>
-                <a href="https://webstudio.ajautomate.co/" class="btn btn-secondary">Check Our Premium Websites</a>
+            <!-- Feature row -->
+            <div class="features">
+              <div class="feature">
+                <div class="feature-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+                    <line x1="12" y1="18" x2="12.01" y2="18"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="feature-title">Mobile Responsive</div>
+                  <div class="feature-desc">Looks perfect on all devices.</div>
+                </div>
               </div>
-              <p class="cta-trust" style="margin-top: 14px; font-size: 13px; color: var(--color-text-tertiary);">
-                Free guide · 3 systems that save you from repetitive inquiries · Delivered in 60 seconds
-              </p>
 
+              <div class="feature">
+                <div class="feature-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="12 6 12 12 16 14"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="feature-title">Fast &amp; Optimized</div>
+                  <div class="feature-desc">Speed optimized for better performance.</div>
+                </div>
+              </div>
+
+              <div class="feature">
+                <div class="feature-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="feature-title">SEO Friendly</div>
+                  <div class="feature-desc">Built with SEO best practices in mind.</div>
+                </div>
+              </div>
+
+              <div class="feature">
+                <div class="feature-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="feature-title">Easy to Manage</div>
+                  <div class="feature-desc">User-friendly and easy to update.</div>
+                </div>
+              </div>
+
+              <div class="feature">
+                <div class="feature-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
+                    <path d="M21 19a2 2 0 0 1-2 2h-1v-6h3zM3 19a2 2 0 0 0 2 2h1v-6H3z"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="feature-title">Ongoing Support</div>
+                  <div class="feature-desc">We're here to help you grow.</div>
+                </div>
+              </div>
             </div>
 
-            <!-- Right — Website Showcase (2 sites stacked vertically) -->
-            <div class="hero-showcase-stack" style="animation: fadeSlideUp 600ms cubic-bezier(0.4,0,0.2,1) 400ms both;">
-
-              <!-- Top: Sierra Bloom Hotel (primary) -->
-              <a href="https://sierra-bloom-hotel.vercel.app/" target="_blank" rel="noopener noreferrer" class="hero-showcase hero-showcase-front" aria-label="Visit Sierra Bloom Hotel live site">
-                <div class="hero-showcase-frame">
-                  <div class="hero-showcase-chrome">
-                    <span class="hero-chrome-dot" style="background: #ff5f57;"></span>
-                    <span class="hero-chrome-dot" style="background: #ffbd2e;"></span>
-                    <span class="hero-chrome-dot" style="background: #28c940;"></span>
-                    <div class="hero-chrome-url">sierra-bloom-hotel.vercel.app</div>
-                  </div>
-                  <img src="assets/sierrabloom-thumb.jpg" alt="Sierra Bloom Hotel website built by WEBDEV BY AJ" class="hero-showcase-image" loading="eager" />
-                </div>
-
-                <div class="hero-showcase-tag">
-                  <span class="hero-showcase-tag-dot"></span>Live Sites
-                </div>
-              </a>
-
-              <!-- Bottom: Cozy Cup Cafe -->
-              <a href="https://the-cozy-cup-one.vercel.app/" target="_blank" rel="noopener noreferrer" class="hero-showcase hero-showcase-back" aria-label="Visit Cozy Cup live site">
-                <div class="hero-showcase-frame">
-                  <div class="hero-showcase-chrome">
-                    <span class="hero-chrome-dot" style="background: #ff5f57;"></span>
-                    <span class="hero-chrome-dot" style="background: #ffbd2e;"></span>
-                    <span class="hero-chrome-dot" style="background: #28c940;"></span>
-                    <div class="hero-chrome-url">the-cozy-cup-one.vercel.app</div>
-                  </div>
-                  <img src="assets/cozycup-thumb.jpg" alt="The Cozy Cup cafe website built by WEBDEV BY AJ" class="hero-showcase-image" loading="eager" />
-                </div>
-
-                <div class="hero-showcase-badge">
-                  <div class="hero-showcase-badge-value">+2.8×</div>
-                  <div class="hero-showcase-badge-label">Conversion Lift</div>
-                </div>
-              </a>
-
-            </div>
           </div>
         </div>
       </header>
-
-      <!-- ============ SOCIAL PROOF MARQUEE ============ -->
-      <div class="proof-strip" aria-label="Trusted tools and platforms">
-        <div class="proof-strip-label">Trusted Tools &amp; Platforms</div>
-        <div class="container" style="overflow: hidden;">
-          <div class="proof-marquee" aria-hidden="true">
-            <div class="proof-logo"><div class="proof-logo-icon">🏨</div><span class="proof-logo-text">HighLevel</span></div>
-            <div class="proof-logo"><div class="proof-logo-icon">🔗</div><span class="proof-logo-text">Zapier</span></div>
-            <div class="proof-logo"><div class="proof-logo-icon">📧</div><span class="proof-logo-text">Mailchimp</span></div>
-            <div class="proof-logo"><div class="proof-logo-icon">📊</div><span class="proof-logo-text">Google Ads</span></div>
-            <div class="proof-logo"><div class="proof-logo-icon">📱</div><span class="proof-logo-text">Meta Ads</span></div>
-            <div class="proof-logo"><div class="proof-logo-icon">🎨</div><span class="proof-logo-text">Canva</span></div>
-            <div class="proof-logo"><div class="proof-logo-icon">💬</div><span class="proof-logo-text">ChatGPT</span></div>
-            <div class="proof-logo"><div class="proof-logo-icon">▲</div><span class="proof-logo-text">Vercel</span></div>
-            <div class="proof-logo"><div class="proof-logo-icon">⚡</div><span class="proof-logo-text">Supabase</span></div>
-            <div class="proof-logo"><div class="proof-logo-icon">🔄</div><span class="proof-logo-text">Make.com</span></div>
-            <!-- Duplicate for seamless loop -->
-            <div class="proof-logo"><div class="proof-logo-icon">🏨</div><span class="proof-logo-text">HighLevel</span></div>
-            <div class="proof-logo"><div class="proof-logo-icon">🔗</div><span class="proof-logo-text">Zapier</span></div>
-            <div class="proof-logo"><div class="proof-logo-icon">📧</div><span class="proof-logo-text">Mailchimp</span></div>
-            <div class="proof-logo"><div class="proof-logo-icon">📊</div><span class="proof-logo-text">Google Ads</span></div>
-            <div class="proof-logo"><div class="proof-logo-icon">📱</div><span class="proof-logo-text">Meta Ads</span></div>
-            <div class="proof-logo"><div class="proof-logo-icon">🎨</div><span class="proof-logo-text">Canva</span></div>
-            <div class="proof-logo"><div class="proof-logo-icon">💬</div><span class="proof-logo-text">ChatGPT</span></div>
-            <div class="proof-logo"><div class="proof-logo-icon">▲</div><span class="proof-logo-text">Vercel</span></div>
-            <div class="proof-logo"><div class="proof-logo-icon">⚡</div><span class="proof-logo-text">Supabase</span></div>
-            <div class="proof-logo"><div class="proof-logo-icon">🔄</div><span class="proof-logo-text">Make.com</span></div>
-          </div>
-        </div>
-      </div>
 
       <!-- ============ PROBLEM ============ -->
       <section class="problem-section section" aria-labelledby="problem-heading">
@@ -1664,26 +1917,6 @@
           </div>
         </div>
       </section>
-
-      <!-- ============ IMAGE BREAK ============ -->
-      <div class="image-break">
-        <div class="container">
-          <div class="image-grid reveal">
-            <a href="https://merbau-beach-resort.vercel.app/" target="_blank" rel="noopener noreferrer" class="image-card" style="text-decoration:none;color:inherit;">
-              <img src="assets/resort-thumb.jpg" alt="Resort / Hotel" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;" loading="lazy" />
-              <div class="image-card-label">Resort / Hotel</div>
-            </a>
-            <a href="https://amberbrew-cafe.vercel.app/" target="_blank" rel="noopener noreferrer" class="image-card" style="text-decoration:none;color:inherit;">
-              <img src="assets/cafe-thumb.jpg" alt="Restaurant / Café" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;" loading="lazy" />
-              <div class="image-card-label">Restaurant / Caf&eacute;</div>
-            </a>
-            <a href="https://smilecraft-dental-ten.vercel.app/" target="_blank" rel="noopener noreferrer" class="image-card" style="text-decoration:none;color:inherit;">
-              <img src="assets/dental-thumb.jpg" alt="Dental / Skin Clinic" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;" loading="lazy" />
-              <div class="image-card-label">Dental / Skin Clinic</div>
-            </a>
-          </div>
-        </div>
-      </div>
 
       <!-- ============ SOLUTION ============ -->
       <section id="solution" class="solution-section section" aria-labelledby="solution-heading">
@@ -1845,71 +2078,35 @@
         </div>
       </section>
 
-      <!-- ============ FREEBIE / LEAD MAGNET (mid-funnel capture) ============ -->
-      <section id="freebie" class="freebie-section section" aria-labelledby="freebie-heading">
-        <div class="container">
-          <div class="freebie-card reveal">
-            <div class="freebie-badge">Free Guide</div>
-            <h2 id="freebie-heading" class="freebie-headline">
-              Grab the <span class="text-yellow">'Business On Autopilot' Guide</span>
-            </h2>
-            <p class="freebie-sub">
-              The 3 systems every local business needs — a website, automated Messenger, and AI assistant — so you stop replying to the same question 50x a day and get back to growing your business.
-            </p>
-
-            <form
-              id="freebie-form"
-              class="freebie-form"
-              action="https://app.kit.com/forms/9348254/subscriptions"
-              method="post"
-              data-sv-form="9348254"
-              data-uid="0c957c33b5"
-              data-format="inline"
-              data-version="5"
-            >
-              <input
-                type="text"
-                name="fields[first_name]"
-                class="freebie-input"
-                placeholder="First name"
-                required
-                autocomplete="given-name"
-              >
-              <input
-                type="email"
-                name="email_address"
-                class="freebie-input"
-                placeholder="Your email address"
-                required
-                autocomplete="email"
-              >
-              <button type="submit" class="freebie-submit" id="freebie-submit-btn">
-                Send Me the Guide →
-              </button>
-              <p class="freebie-trust">No spam. Unsubscribe anytime.</p>
-              <p class="freebie-error" id="freebie-error">Something went wrong. Please try again.</p>
-            </form>
-
-            <div class="freebie-success" id="freebie-success" role="status" aria-live="polite">
-              <div style="margin-bottom: 14px;">✓ Check your inbox — your guide is on the way!</div>
-              <div style="margin-bottom: 18px; font-weight: 600;">
-                While you wait,
-                <a href="https://webstudio.ajautomate.co/" style="color: var(--color-yellow); text-decoration: underline; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 800;">
-                  CHECK OUT MY PREMIUM WEBSITES →
-                </a>
-              </div>
-              <div style="border-top: 1px solid rgba(0, 210, 106, 0.2); padding-top: 18px; text-align: center;">
-                <div style="color: var(--color-success-green); font-weight: 800; font-size: 15px; letter-spacing: 0.02em; margin-bottom: 8px;">
-                  Here's my guideline
-                </div>
-                <div style="font-size: 14px; font-weight: 400; color: var(--color-text-secondary); line-height: 1.6;">
-                  Open the guide and read pages 3–5 first — that's where you'll see the 3 systems that can save you 10+ hours a week of answering repetitive inquiries.
-                </div>
-              </div>
-            </div>
+      <!-- ============ SOCIAL PROOF MARQUEE ============ -->
+      <div class="proof-strip" aria-label="Trusted tools and platforms">
+        <div class="proof-strip-label">Trusted Tools &amp; Platforms</div>
+        <div class="container" style="overflow: hidden;">
+          <div class="proof-marquee" aria-hidden="true">
+            <div class="proof-logo"><div class="proof-logo-icon">🏨</div><span class="proof-logo-text">HighLevel</span></div>
+            <div class="proof-logo"><div class="proof-logo-icon">🔗</div><span class="proof-logo-text">Zapier</span></div>
+            <div class="proof-logo"><div class="proof-logo-icon">📧</div><span class="proof-logo-text">Mailchimp</span></div>
+            <div class="proof-logo"><div class="proof-logo-icon">📊</div><span class="proof-logo-text">Google Ads</span></div>
+            <div class="proof-logo"><div class="proof-logo-icon">📱</div><span class="proof-logo-text">Meta Ads</span></div>
+            <div class="proof-logo"><div class="proof-logo-icon">🎨</div><span class="proof-logo-text">Canva</span></div>
+            <div class="proof-logo"><div class="proof-logo-icon">💬</div><span class="proof-logo-text">ChatGPT</span></div>
+            <div class="proof-logo"><div class="proof-logo-icon">▲</div><span class="proof-logo-text">Vercel</span></div>
+            <div class="proof-logo"><div class="proof-logo-icon">⚡</div><span class="proof-logo-text">Supabase</span></div>
+            <div class="proof-logo"><div class="proof-logo-icon">🔄</div><span class="proof-logo-text">Make.com</span></div>
+            <!-- Duplicate for seamless loop -->
+            <div class="proof-logo"><div class="proof-logo-icon">🏨</div><span class="proof-logo-text">HighLevel</span></div>
+            <div class="proof-logo"><div class="proof-logo-icon">🔗</div><span class="proof-logo-text">Zapier</span></div>
+            <div class="proof-logo"><div class="proof-logo-icon">📧</div><span class="proof-logo-text">Mailchimp</span></div>
+            <div class="proof-logo"><div class="proof-logo-icon">📊</div><span class="proof-logo-text">Google Ads</span></div>
+            <div class="proof-logo"><div class="proof-logo-icon">📱</div><span class="proof-logo-text">Meta Ads</span></div>
+            <div class="proof-logo"><div class="proof-logo-icon">🎨</div><span class="proof-logo-text">Canva</span></div>
+            <div class="proof-logo"><div class="proof-logo-icon">💬</div><span class="proof-logo-text">ChatGPT</span></div>
+            <div class="proof-logo"><div class="proof-logo-icon">▲</div><span class="proof-logo-text">Vercel</span></div>
+            <div class="proof-logo"><div class="proof-logo-icon">⚡</div><span class="proof-logo-text">Supabase</span></div>
+            <div class="proof-logo"><div class="proof-logo-icon">🔄</div><span class="proof-logo-text">Make.com</span></div>
           </div>
         </div>
-      </section>
+      </div>
 
       <!-- ============ TESTIMONIALS ============ -->
       <section id="testimonials" class="testimonials-section section" aria-labelledby="testimonials-heading">
@@ -2002,7 +2199,7 @@
             </h2>
 
             <div class="cta-buttons">
-              <a href="https://webstudio.ajautomate.co/" class="btn btn-primary btn-arrow">Check Our Premium Websites</a>
+              <a href="consultation.html" class="btn btn-primary btn-arrow">Let's Build Your Website</a>
             </div>
 
             <p class="cta-trust">See real results · No templates · Built to convert</p>
@@ -2275,38 +2472,142 @@
       });
     });
 
-    // ==================== FREEBIE FORM (Kit) ====================
-    const freebieForm = document.getElementById('freebie-form');
-    if (freebieForm) {
-      freebieForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const submitBtn = document.getElementById('freebie-submit-btn');
-        const errorEl = document.getElementById('freebie-error');
-        const successEl = document.getElementById('freebie-success');
+    /* ==================== V6 HERO COVERFLOW ==================== */
+    (function () {
+      const SITES = [
+        { name: 'Sierra Bloom Hotel',  url: 'https://sierra-bloom-hotel.vercel.app/',     img: 'assets/sierrabloom-thumb.jpg' },
+        { name: 'Casa Lume Hotel',     url: 'https://casa-lume-hotel.vercel.app/',        img: 'assets/casalume-thumb.jpg' },
+        { name: 'Aviora Coast Resort', url: 'https://aviora-coast.vercel.app/',           img: 'assets/aviora-thumb.jpg' },
+        { name: 'Merbau Beach Resort', url: 'https://merbau-beach-resort.vercel.app/',    img: 'assets/resort-thumb.jpg' },
+        { name: 'The Cozy Cup',        url: 'https://the-cozy-cup-one.vercel.app/',       img: 'assets/cozycup-thumb.jpg' },
+        { name: 'Amberbrew Cafe',      url: 'https://amberbrew-cafe.vercel.app/',         img: 'assets/cafe-thumb.jpg' },
+        { name: 'Smilecraft Dental',   url: 'https://smilecraft-dental-ten.vercel.app/',  img: 'assets/dental-thumb.jpg' },
+        { name: 'Ironforge Gym',       url: 'https://coach-gym-funnel.vercel.app/',       img: 'assets/ironforge-thumb.jpg' },
+      ];
 
-        errorEl.classList.remove('show');
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Sending...';
+      const stage = document.getElementById('cfStage');
+      const dotsEl = document.getElementById('cfDots');
+      const prevBtn = document.getElementById('cfPrev');
+      const nextBtn = document.getElementById('cfNext');
+      const root = document.getElementById('coverflow');
+      if (!stage || !root) return;
 
-        try {
-          const formData = new FormData(freebieForm);
-          const response = await fetch(freebieForm.action, {
-            method: 'POST',
-            body: formData,
-            headers: { 'Accept': 'application/json' },
-          });
+      let active = 0;
+      const total = SITES.length;
+      let autoTimer = null;
+      const AUTO_MS = 4500;
 
-          if (!response.ok) throw new Error('Subscription failed');
+      SITES.forEach((site, i) => {
+        const a = document.createElement('a');
+        a.className = 'cf-card';
+        a.href = site.url;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        a.setAttribute('aria-label', 'Visit ' + site.name + ' live site');
+        a.dataset.index = i;
+        a.innerHTML =
+          '<img class="cf-card-image" src="' + site.img + '" alt="' + site.name + ' website built by WEBDEV BY AJ" loading="' + (i < 3 ? 'eager' : 'lazy') + '" />' +
+          '<div class="cf-card-overlay">' +
+            '<svg class="cf-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+              '<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>' +
+              '<path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>' +
+            '</svg>' +
+            '<div class="cf-card-name">' + site.name + '</div>' +
+          '</div>';
+        a.addEventListener('click', function (e) {
+          const idx = parseInt(a.dataset.index, 10);
+          if (idx !== active) {
+            e.preventDefault();
+            goTo(idx);
+          }
+        });
+        stage.appendChild(a);
 
-          freebieForm.style.display = 'none';
-          successEl.classList.add('show');
-        } catch (err) {
-          errorEl.classList.add('show');
-          submitBtn.disabled = false;
-          submitBtn.textContent = 'Send Me the Checklist →';
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'cf-dot';
+        dot.setAttribute('role', 'tab');
+        dot.setAttribute('aria-label', 'Show ' + site.name);
+        dot.dataset.index = i;
+        dot.addEventListener('click', () => goTo(i));
+        dotsEl.appendChild(dot);
+      });
+
+      const cards = Array.from(stage.querySelectorAll('.cf-card'));
+      const dots = Array.from(dotsEl.querySelectorAll('.cf-dot'));
+
+      function shortestOffset(from, to, n) {
+        let diff = to - from;
+        if (diff > n / 2) diff -= n;
+        else if (diff < -n / 2) diff += n;
+        return diff;
+      }
+
+      function render() {
+        cards.forEach((card, i) => {
+          const offset = shortestOffset(active, i, total);
+          let pos;
+          if (offset === 0) pos = '0';
+          else if (offset === 1) pos = '1';
+          else if (offset === -1) pos = '-1';
+          else if (offset === 2) pos = '2';
+          else if (offset === -2) pos = '-2';
+          else pos = 'hidden';
+          card.dataset.pos = pos;
+          card.setAttribute('aria-hidden', pos !== '0');
+          card.tabIndex = pos === '0' ? 0 : -1;
+        });
+        dots.forEach((d, i) => d.classList.toggle('active', i === active));
+      }
+
+      function goTo(i) {
+        active = ((i % total) + total) % total;
+        render();
+        restartAuto();
+      }
+      function next() { goTo(active + 1); }
+      function prev() { goTo(active - 1); }
+
+      prevBtn.addEventListener('click', prev);
+      nextBtn.addEventListener('click', next);
+
+      root.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') { e.preventDefault(); prev(); }
+        else if (e.key === 'ArrowRight') { e.preventDefault(); next(); }
+      });
+
+      let touchStartX = 0, touchStartY = 0, touching = false;
+      root.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+        touching = true;
+        stopAuto();
+      }, { passive: true });
+      root.addEventListener('touchend', (e) => {
+        if (!touching) return;
+        touching = false;
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        const dy = e.changedTouches[0].clientY - touchStartY;
+        if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+          if (dx < 0) next(); else prev();
+        } else {
+          restartAuto();
         }
       });
-    }
+
+      function startAuto() { stopAuto(); autoTimer = setInterval(next, AUTO_MS); }
+      function stopAuto() { if (autoTimer) { clearInterval(autoTimer); autoTimer = null; } }
+      function restartAuto() { stopAuto(); startAuto(); }
+
+      root.addEventListener('mouseenter', stopAuto);
+      root.addEventListener('mouseleave', startAuto);
+      root.addEventListener('focusin', stopAuto);
+      root.addEventListener('focusout', startAuto);
+
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      render();
+      if (!reduce) startAuto();
+    })();
   </script>
 
 </body>
