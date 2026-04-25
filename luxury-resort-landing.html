@@ -736,7 +736,20 @@
       .cf-card[data-pos="1"]  { transform: translate(-50%, -50%) translateX(58%)  translateY(20px) rotateY(-8deg) scale(0.85); }
       .cf-card[data-pos="-1"] { transform: translate(-50%, -50%) translateX(-58%) translateY(20px) rotateY(8deg)  scale(0.85); }
       .features { grid-template-columns: repeat(2, 1fr); gap: 20px; }
-      .cta-btn { padding: 16px 32px; font-size: var(--text-sm); width: 100%; max-width: 320px; justify-content: center; }
+      .cta-wrap { width: 100%; max-width: 360px; margin-left: auto; margin-right: auto; }
+      .cta-btn {
+        display: flex;
+        padding: 16px 24px;
+        font-size: var(--text-sm);
+        letter-spacing: 0.02em;
+        width: 100%;
+        max-width: 320px;
+        margin-left: auto;
+        margin-right: auto;
+        justify-content: center;
+        text-align: center;
+      }
+      .cta-trust { text-align: center; }
     }
     @media (max-width: 480px) {
       .features { grid-template-columns: 1fr; gap: 28px; }
