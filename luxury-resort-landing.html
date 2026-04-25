@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="assets/sierrabloom-thumb.jpg" fetchpriority="high">
   <style>
     /* ==================== DESIGN TOKENS ==================== */
     :root {
@@ -92,6 +93,9 @@
       width: 700px; height: 400px;
       bottom: 10%; left: 20%;
       background: rgba(94, 23, 235, 0.06);
+    }
+    @media (max-width: 768px) {
+      .orb { display: none; }
     }
 
     /* ==================== LAYOUT ==================== */
@@ -2506,7 +2510,7 @@
         a.setAttribute('aria-label', 'Visit ' + site.name + ' live site');
         a.dataset.index = i;
         a.innerHTML =
-          '<img class="cf-card-image" src="' + site.img + '" alt="' + site.name + ' website built by WEBDEV BY AJ" loading="' + (i < 3 ? 'eager' : 'lazy') + '" />' +
+          '<img class="cf-card-image" src="' + site.img + '" alt="' + site.name + ' website built by WEBDEV BY AJ" decoding="async" loading="' + (i < 3 ? 'eager' : 'lazy') + '"' + (i === 0 ? ' fetchpriority="high"' : '') + ' />' +
           '<div class="cf-card-overlay">' +
             '<svg class="cf-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
               '<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>' +
@@ -2605,8 +2609,9 @@
       root.addEventListener('focusout', startAuto);
 
       const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
       render();
-      if (!reduce) startAuto();
+      if (!reduce && !isMobile) startAuto();
     })();
   </script>
 
