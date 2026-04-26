@@ -507,6 +507,34 @@
       text-align: center;
     }
 
+    /* Hero educational copy block (above the carousel) */
+    .hero-edu {
+      width: 100%;
+      max-width: 760px;
+      margin: 0 auto 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .hero-edu h1 {
+      margin-bottom: 24px;
+      font-size: clamp(2rem, 5vw, var(--text-5xl));
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+    .hero-edu .hero-sub,
+    .hero-edu .hero-value,
+    .hero-edu .hero-punch {
+      max-width: 660px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    @media (max-width: 768px) {
+      .hero-edu { margin-bottom: 36px; }
+    }
+
     .cf-shell { width: 100%; position: relative; margin-bottom: 8px; }
     .coverflow {
       position: relative;
@@ -1801,7 +1829,31 @@
         <div class="container">
           <div class="hero-inner">
 
-            <!-- Card carousel (top) -->
+            <!-- Educational copy (centered, top of hero) -->
+            <div class="hero-edu">
+              <div class="hero-badge">
+                <div class="hero-badge-dot" aria-hidden="true"></div>
+                <span>Available for local &amp; international clients</span>
+              </div>
+
+              <h1>Your Business Looks Premium. <span class="text-yellow">But Your Online Presence Doesn't.</span></h1>
+
+              <p class="hero-sub">
+                You've invested heavily into your resort, restaurant, or clinic&hellip;
+                but if your website doesn't reflect that — you're silently losing high-paying customers every day.
+              </p>
+
+              <p class="hero-value">
+                We design premium websites + high-converting funnels
+                that turn casual browsers into booked, paying customers.
+              </p>
+
+              <p class="hero-punch">
+                Because in today's market — people don't visit first… they Google first.
+              </p>
+            </div>
+
+            <!-- Card carousel -->
             <div class="cf-shell">
               <div class="coverflow" id="coverflow" aria-roledescription="carousel" aria-label="Live websites built by WEBDEV by AJ">
                 <div class="coverflow-stage" id="cfStage"></div>
@@ -1817,8 +1869,8 @@
               <div class="cf-dots" id="cfDots" role="tablist" aria-label="Choose a website"></div>
             </div>
 
-            <!-- Brand title -->
-            <h1 class="brand-title">WEBDEV BY AJ</h1>
+            <!-- Brand title (not h1 — the educational headline above is the page h1) -->
+            <div class="brand-title">WEBDEV BY AJ</div>
             <p class="brand-tagline">Let's create your dream website for better conversion</p>
 
             <!-- CTA -->
